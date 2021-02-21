@@ -9,7 +9,7 @@ const Container = styled.div`
     left: 0;
     z-index: 9;
     display: ${props => props.show ? 'inherit' : 'none'};
-    backdrop-filter: brightness(20%);
+    backdrop-filter: brightness(10%);
 `
 
 const Window = styled.div`
@@ -17,7 +17,7 @@ const Window = styled.div`
     width: 60%;
     display: inherit;
     position: fixed;
-    top: 30%;
+    top: 10%;
     left: 15%;
     background: white;
     z-index: 10;
@@ -27,7 +27,7 @@ const Window = styled.div`
 const Modal = (props) => {
 
     return (
-        <Container show={props.show} onClick={() => { props.setModalOpen(false) }}>
+        <Container show={props.show} onClick={() => { props.setModalOpen(true) }}>
             <Window>
                 {props.children}
             </Window>

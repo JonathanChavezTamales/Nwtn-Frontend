@@ -14,7 +14,7 @@ const Container = styled.div`
     background-color: ${props => props.color || 'transparent'};
 `
 
-const TodoItem = (props) => {
+const Button = (props) => {
     return (
         <Container onClick={props.onClick} color={props.color}>
             {props.text}
@@ -22,4 +22,4 @@ const TodoItem = (props) => {
     )
 }
 
-export default TodoItem;
+export default Button;

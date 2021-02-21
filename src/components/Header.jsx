@@ -13,7 +13,7 @@ const Logo = styled.span`
     font-weight: 600;
     font-size: 1.5rem;
     color: white;
-    padding: .2rem 1rem;
+    padding: .2rem 2rem;
     background: #071013;
 `
 
@@ -24,6 +24,7 @@ const Link = styled.a`
     color: #333;
     margin-right: 2rem;
     text-decoration: none;
+    cursor: pointer;
     &:hover {
         color: white;
         background: black;
@@ -46,10 +47,12 @@ const TodoItem = (props) => {
             <LinkContainer>
                 <Link href='google.com' active={true}>Today</Link>
                 <Link href='google.com'>Goals</Link>
+                <Link href='google.com'>Colabs</Link>
                 <Link href='google.com'>Calendar</Link>
-                <Link href='google.com'>Canvas</Link>
+                <Link href='google.com'>Links</Link>
                 <Link href='google.com'>Screen Time</Link>
                 <Link href='google.com'>Notebooks</Link>
+                <Link onClick={() => { props.setShowWallpaper(true) }}>Wallpaper</Link>
                 <Link href='google.com'>Send feedback</Link>
             </LinkContainer>
         </Nav>
