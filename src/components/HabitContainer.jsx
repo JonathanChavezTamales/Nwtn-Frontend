@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import styled, { css } from 'styled-components'
+import React from 'react';
+import styled from 'styled-components'
 import HabitItem from './HabitItem'
 import Button from './UI/Button'
 
 const Container = styled.div`
     width: 33%;
-    margin-left: 1rem;
+    margin-left: 2rem;
 
     @media only screen and (max-width: 600px) {
         width: 90%;

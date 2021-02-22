@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components'
+import { Link } from 'react-router-dom';
 
 const Nav = styled.nav`
     background: white;
@@ -19,7 +20,7 @@ const Logo = styled.span`
     background: #071013;
 `
 
-const Link = styled.a`
+const LinkElement = styled(Link)`
     font-weight: ${props => props.active ? '700' : '400'};
     font-size: 1rem;
     padding: 20px 15px;
@@ -49,14 +50,14 @@ const TodoItem = (props) => {
         <Nav>
             <Logo>nwtn.app</Logo>
             <LinkContainer>
-                <Link href='google.com' active={true}>todo</Link>
-                <Link href='google.com'>projects</Link>
-                <Link href='google.com'>goals</Link>
-                <Link href='google.com'>calendar</Link>
-                <Link href='google.com'>lists</Link>
-                <Link href='google.com'>screen Time</Link>
-                <Link onClick={() => { props.setShowWallpaper(true) }}>wallpaper</Link>
-                <Link href='https://guyckr4srmz.typeform.com/to/vnZYklfj' rel='nofollow' target='_blank' >feedback</Link>
+                <LinkElement to='/' active={true}>todo</LinkElement>
+                <LinkElement to='/projects'>projects</LinkElement>
+                <LinkElement to='/goals'>goals</LinkElement>
+                <LinkElement to='/calendar'>calendar</LinkElement>
+                <LinkElement to='/lists'>lists</LinkElement>
+                <LinkElement to='/screentime'>screen Time</LinkElement>
+                <LinkElement onClick={() => { props.setShowWallpaper(true) }}>wallpaper</LinkElement>
+                <LinkElement to='https://guyckr4srmz.typeform.com/to/vnZYklfj' rel='nofollow' target='_blank' >feedback</LinkElement>
             </LinkContainer>
         </Nav>
     )
