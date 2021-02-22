@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 
 const Item = styled.div`
     background: white;
-    border: 3px black solid;
+    border: 2px black solid;
     padding: 1rem;
     border-radius: 6px;
     margin-bottom: .5rem;
@@ -13,7 +13,7 @@ const Item = styled.div`
 const Checkbox = styled.span`
     width: 1.5rem;
     height: 1.5rem;
-    border: black solid 3px;
+    border: black solid 2px;
     margin-right: 1rem;
     border-radius: 100%;
     background: ${props => props.checked ? 'black' : 'inherit'}

@@ -4,9 +4,11 @@ import styled, { css } from 'styled-components'
 const Nav = styled.nav`
     background: white;
     padding: 1.5rem;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: .5rem;
-    border-bottom: 3px #000 solid;
+    border-bottom: 2px #000 solid;
 `
 
 const Logo = styled.span`
@@ -18,13 +20,15 @@ const Logo = styled.span`
 `
 
 const Link = styled.a`
-    font-weight: ${props => props.active ? '600' : '400'};
+    font-weight: ${props => props.active ? '700' : '400'};
     font-size: 1rem;
-    padding: 3px;
-    color: #333;
-    margin-right: 2rem;
+    padding: 20px 15px;
+    color: ${props => props.active ? 'white' : '#333'};
+    background: ${props => props.active ? 'black' : 'transparent'};
+    margin-right: .2rem;
     text-decoration: none;
     cursor: pointer;
+
     &:hover {
         color: white;
         background: black;
@@ -45,15 +49,14 @@ const TodoItem = (props) => {
         <Nav>
             <Logo>nwtn.app</Logo>
             <LinkContainer>
-                <Link href='google.com' active={true}>Today</Link>
-                <Link href='google.com'>Goals</Link>
-                <Link href='google.com'>Colabs</Link>
-                <Link href='google.com'>Calendar</Link>
-                <Link href='google.com'>Links</Link>
-                <Link href='google.com'>Screen Time</Link>
-                <Link href='google.com'>Notebooks</Link>
-                <Link onClick={() => { props.setShowWallpaper(true) }}>Wallpaper</Link>
-                <Link href='google.com'>Send feedback</Link>
+                <Link href='google.com' active={true}>todo</Link>
+                <Link href='google.com'>projects</Link>
+                <Link href='google.com'>goals</Link>
+                <Link href='google.com'>calendar</Link>
+                <Link href='google.com'>lists</Link>
+                <Link href='google.com'>screen Time</Link>
+                <Link onClick={() => { props.setShowWallpaper(true) }}>wallpaper</Link>
+                <Link href='https://guyckr4srmz.typeform.com/to/vnZYklfj' rel='nofollow' target='_blank' >feedback</Link>
             </LinkContainer>
         </Nav>
     )

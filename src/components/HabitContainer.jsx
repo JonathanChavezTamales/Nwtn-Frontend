@@ -22,7 +22,7 @@ const HabitContainer = (props) => {
     return (
         <Container>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <H2>Habits</H2><Button color="#FE654F" text="+"></Button>
+                <H2>Habits</H2><Button color="#FE654F">+</Button>
             </div>
             <HabitItem title="Comer una verdura o fruta" done={true}></HabitItem>
             <HabitItem title="Hacer ejercicio" done={false}></HabitItem>

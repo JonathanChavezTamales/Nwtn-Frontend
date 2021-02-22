@@ -6,10 +6,11 @@ const Container = styled.div`
     border-radius: 10px;
     display: flex;
     justify-content: center;
+    align-items: center;
     font-size: 1.5rem;
-    width: 4rem;
+    width: 1.5rem;
     cursor: pointer;
-    height: 2rem;
+    height: 1.5rem;
     margin: .2rem;
     background-color: ${props => props.color || 'transparent'};
 `
@@ -17,7 +18,7 @@ const Container = styled.div`
 const Button = (props) => {
     return (
         <Container onClick={props.onClick} color={props.color}>
-            {props.text}
+            {props.children}
         </Container>
     )
 }
