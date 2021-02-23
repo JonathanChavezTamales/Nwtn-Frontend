@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components'
 
 const Item = styled.div`
@@ -37,6 +37,10 @@ const CategoryMarker = styled.span`
 const TodoItem = (props) => {
 
     const [completed, setCompleted] = useState(false);
+
+    useEffect(() => {
+        if (props.done) setCompleted(true);
+    }, [])
 
     return (
         <Item>

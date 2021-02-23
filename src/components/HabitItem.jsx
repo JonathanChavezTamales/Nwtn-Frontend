@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components'
 import { faAppleAlt, faBookOpen, faBrain, faDumbbell, faSpa } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -41,6 +41,10 @@ const HabitItem = (props) => {
     }
 
     const [completed, setCompleted] = useState(false);
+
+    useEffect(() => {
+        if (props.done) setCompleted(true);
+    }, [])
 
     return (
         <Item done={completed} onClick={() => { setCompleted(!completed) }}>

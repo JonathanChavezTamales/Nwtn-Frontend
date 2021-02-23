@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const Nav = styled.nav`
     background: white;
@@ -65,7 +65,7 @@ const TodoItem = (props) => {
 
     return (
         <Nav>
-            <Logo>nwtn.app</Logo>
+            <Logo><Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>nwtn.app</Link></Logo>
             <LinkContainer>
                 <LinkElement to='/' exact activeStyle={activeLinkStyle}>todo</LinkElement>
                 <LinkElement to='/projects' activeStyle={activeLinkStyle}>projects</LinkElement>

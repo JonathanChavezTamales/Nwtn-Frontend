@@ -17,9 +17,8 @@ const Selector = styled.select`
 const Select = (props) => {
     return (
         <Selector value={props.value} name={props.name} onChange={props.onChange}>
-            <option value={undefined} selected>Uncategorized</option>
-            <option value="escuela">Escuela</option>
-            <option value="hyperk">HyperK</option>
+            {props.placeholder && <option value={undefined} selected>{props.placeholder || 'Select'}</option>}
+            {props.options && props.options.map((option) => <option value={option}>{option}</option>)}
         </Selector>
     )
 }

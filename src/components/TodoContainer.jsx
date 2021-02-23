@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components'
 import TodoItem from './TodoItem'
 import Button from './UI/Button'
-import TodoModal from './AddTodo'
+import TodoModal from './TodoModal'
 
 
 const Container = styled.div`

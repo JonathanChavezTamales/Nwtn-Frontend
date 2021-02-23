@@ -34,11 +34,11 @@ const TodoModal = (props) => {
                     <Input name='title' value={values.title} required placeholder="Task title" big={true} autoFocus onChange={handleChange}></Input>
                     <Input name='details' value={values.details} placeholder="Optional details" onChange={handleChange}></Input>
                     <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                        <Select name='category' value={values.category} onChange={handleChange}></Select>
+                        <Select name='category' placeholder='Select category' options={['HyperK', 'Trabajo']} value={values.category} onChange={handleChange}></Select>
                         <Date name='due' value={values.due} onChange={handleChange}></Date>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '6rem' }}>
-                        <Button type='submit' color='#43B929'>create task</Button>
+                        <Button type='submit' color='#43B929'>Create task</Button>
                     </div>
 
                 </form>)}
