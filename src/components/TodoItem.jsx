@@ -3,30 +3,31 @@ import styled, { css } from 'styled-components'
 
 const Item = styled.div`
     background: white;
-    border: 2px black solid;
+    box-shadow: 1px 1px 7px 1px #DDD;
     padding: 1rem;
-    border-radius: 6px;
-    margin-bottom: .5rem;
+    color: #333;
+    cursor: pointer;
+    margin-bottom: .7rem;
     display: flex;
 `
 
 const Checkbox = styled.span`
     width: 1.5rem;
     height: 1.5rem;
-    border-radius: 3px;
-    border: black solid 2px;
+    border-radius: 2px;
+    border: #333 solid 2px;
     margin-right: 1rem;
-    background: ${props => props.checked ? 'black' : 'inherit'}
+    background: ${props => props.checked ? '#333' : 'inherit'}
 `
 
 const Title = styled.div`
     align-self: center;
     font-weight: 600;
-    ${props => props.underline ? 'border-bottom: 2px dashed #ff0054;' : ''}
+    ${props => props.underline ? 'border-bottom: 2px dotted #ff0054;' : ''}
 `
 
 const CategoryMarker = styled.span`
-    width: .5rem;
+    width: .3rem;
 
     background: ${props => props.color ? props.color : 'transparent'};
     margin-right: .3rem;

@@ -9,15 +9,14 @@ const Container = styled.div`
     left: 0;
     z-index: 9;
     display: ${props => props.show ? 'inherit' : 'none'};
-    backdrop-filter: blur(6px);
+    backdrop-filter: brightness(20%);
 `
 
 const Window = styled.div`
-    border: 3px solid black;
     width: 60%;
+    border-radius: 5px;
     display: inherit;
     position: fixed;
-    border-radius: 1rem;
     top: 10%;
     left: 15%;
     background: white;
@@ -42,7 +41,7 @@ const Modal = (props) => {
     })
 
     return (
-        <Container show={props.show} onClick={closeModal}>
+        <Container show={props.show}>
             <Window>
                 {props.children}
             </Window>

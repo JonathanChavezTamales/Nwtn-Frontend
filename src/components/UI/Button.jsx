@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components'
 
 const Container = styled.div`
-    border: 2px solid black;
-    border-radius: 10px;
+    border-radius: 3px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    width: 1.5rem;
+    padding: .2rem 1rem;
     cursor: pointer;
-    height: 1.5rem;
     margin: .2rem;
+    color:white;
     background-color: ${props => props.color || 'transparent'};
 `
 

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components'
-import Clock from './Clock'
 
 const Container = styled.div`
     position: fixed;
@@ -24,9 +23,7 @@ const Container = styled.div`
 
 const Wallpaper = (props) => {
     return (
-        <Container show={props.show} onClick={() => { props.setShowWallpaper(false) }}>
-            <Clock></Clock>
-        </Container>
+        <Container show={props.show} onClick={() => { props.setShowWallpaper(false) }}>        </Container>
     )
 }
 

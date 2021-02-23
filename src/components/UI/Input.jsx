@@ -5,14 +5,15 @@ import styled, { css } from 'styled-components'
 const Input = styled.input`
 font-size: ${props => props.big ? '2rem' : '1rem'};
 font-weight: ${props => props.big ? '600' : '400'};
-border: 3px solid black;
-padding: 1rem;
+border: none;
+border-bottom: 2px solid black;
+padding: 0rem 0rem .5rem 0rem;
 width: 95%;
-margin-bottom: 1rem;
+margin-bottom: 3rem;
 
 &:focus{
     outline-width: 0;
-    border: 3px dashed black;
+    border-bottom: 2px dashed black;
 }
 `
 

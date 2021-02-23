@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
+import ProjectCard from '../ProjectCard'
 
 const Section = styled.section`
-  display: flex;
   padding: 1rem;
   flex-wrap: wrap;
   margin-bottom: 5rem;
@@ -16,11 +16,15 @@ const H1 = styled.h1`
 `
 
 const ProjectsPage = () => {
-    return (
-        <Section>
-            <H1>Projects</H1>
-        </Section>
-    )
+  return (
+    <Section>
+      <H1>Projects</H1>
+      <section style={{ paddingLeft: '5rem', display: 'flex', flexWrap: 'wrap' }}>
+        <ProjectCard></ProjectCard>
+        <ProjectCard></ProjectCard>
+      </section>
+    </Section>
+  )
 }
 
 export default ProjectsPage;

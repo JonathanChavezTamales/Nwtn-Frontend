@@ -30,12 +30,6 @@ const App = () => {
 
   const [showWallpaper, setShowWallpaper] = useState(false);
 
-  useEffect(() => {
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') prompt('')
-    })
-  })
-
   return (
     <Router>
       <Header setShowWallpaper={setShowWallpaper}></Header>
