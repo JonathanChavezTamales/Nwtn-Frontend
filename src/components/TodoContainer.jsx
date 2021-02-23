@@ -35,24 +35,16 @@ const TodoContainer = (props) => {
 
     const retrieveTasks = () => {
 
-        let p = [{ title: 'tarea de gante', category: 'Escuela', due: 1614055416762, done: true },
-        { title: 'cacota', category: 'Escuela', due: 1614099999000, done: SVGComponentTransferFunctionElement },
-        { title: 'cobrar a rivera', category: undefined, due: 1619099999000, done: false }]
+        fetch('http://localhost:8000/tasks', { method: 'GET' })
+            .then(res => res.json())
+            .then(data => {
+                setTasks({
+                    today: data.today,
+                    thisweek: data.thisweek,
+                    someday: data.someday
+                });
+            });
 
-        // Classify by due date (TODO: Do this on server instead)
-        let todayMidnight = new window.Date();
-        todayMidnight.setHours(23, 59, 59, 0);
-
-        let satMidnight = new window.Date();
-        satMidnight.setDate(satMidnight.getDate() + 6 - satMidnight.getDay());
-        satMidnight.setHours(23, 59, 59, 0);
-
-
-        const today = p.filter((task) => task.due < todayMidnight)
-        const thisweek = p.filter((task) => task.due >= todayMidnight && task.due < satMidnight)
-        const someday = p.filter((task) => task.due >= satMidnight)
-
-        setTasks({ today, thisweek, someday })
     }
 
     useEffect(() => {
@@ -60,7 +52,19 @@ const TodoContainer = (props) => {
     }, [])
 
     const createTask = (taskData) => {
-        setTasks({ ...tasks, today: [...tasks.today, taskData] })
+        console.log(taskData)
+        fetch('http://localhost:8000/tasks', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(taskData)
+        }).then((res) => {
+            //TODO: Dont retrieve after submit, its expensive, handle it in client (context)
+            retrieveTasks();
+        }).catch((err) => { console.log(err) })
+
     }
 
     return (
@@ -70,15 +74,15 @@ const TodoContainer = (props) => {
             </div>
 
             <h3>Today</h3>
-            {tasks.today.map((task) => <TodoItem done={task.done} title={task.title}></TodoItem>)}
-            <h3 style={{ color: '#555' }}>This week</h3>
-            {tasks.thisweek.map((task) => <TodoItem done={task.done} title={task.title}></TodoItem>)}
-            <h3 style={{ color: '#AAA' }}>Someday</h3>
-            {tasks.someday.map((task) => <TodoItem done={task.done} title={task.title}></TodoItem>)}
+            {tasks.today.map((task) => <TodoItem done={task.done} id={task._id} title={task.title} category={task.category}></TodoItem>)}
+            <h3 style={{ color: '#555', marginTop: '2rem' }}>This week</h3>
+            {tasks.thisweek.map((task) => <TodoItem done={task.done} id={task._id} title={task.title} category={task.category}></TodoItem>)}
+            <h3 style={{ color: '#AAA', marginTop: '2rem' }}>Someday</h3>
+            { tasks.someday.map((task) => <TodoItem done={task.done} id={task._id} title={task.title} category={task.category}></TodoItem>)}
 
             <TodoModal open={modalOpen} setModalOpen={setModalOpen} createTask={createTask}></TodoModal>
 
-        </Container>
+        </Container >
     )
 }
 

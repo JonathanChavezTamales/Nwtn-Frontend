@@ -38,15 +38,35 @@ const TodoItem = (props) => {
 
     const [completed, setCompleted] = useState(false);
 
+    const categoryToColor = (category) => {
+        switch (category) {
+            case 'Escuela': return '#51bbfe';
+            default: return 'transparent';
+        }
+    }
+
+    const handleCheckboxClick = async () => {
+        await setCompleted(!completed);
+        fetch('http://localhost:8000/tasks', {
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: props.id, completed })
+        }).then((res) => {
+        }).catch((err) => { console.log(err) })
+    }
+
     useEffect(() => {
         if (props.done) setCompleted(true);
     }, [])
 
     return (
         <Item>
-            <Checkbox checked={completed} onClick={() => { setCompleted(!completed) }}></Checkbox>
+            <Checkbox checked={completed} onClick={handleCheckboxClick}></Checkbox>
             <Title underline={props.important}>{props.title}</Title>
-            <CategoryMarker color={props.color}></CategoryMarker>
+            <CategoryMarker color={() => categoryToColor(props.category)}></CategoryMarker>
         </Item >
     )
 }
