@@ -42,9 +42,13 @@ const Modal = (props) => {
         })
     })
 
+    const handleClick = (e) => {
+        if (e.target.id === 'container') closeModal();
+    }
+
     return (
-        <Container show={props.show}>
-            <Window>
+        <Container id='container' show={props.show} onClick={handleClick}>
+            <Window id='window' onClick={handleClick}>
                 {props.children}
             </Window>
         </Container>
