@@ -22,7 +22,7 @@ const Checkbox = styled.span`
 
 const Title = styled.div`
     align-self: center;
-    font-weight: 600;
+    
     ${props => props.underline ? 'border-bottom: 2px dotted #ff0054;' : ''}
 `
 
@@ -36,9 +36,11 @@ const CategoryMarker = styled.span`
 
 const TodoItem = (props) => {
 
+    const [completed, setCompleted] = useState(false);
+
     return (
         <Item>
-            <Checkbox checked={props.done}></Checkbox>
+            <Checkbox checked={completed} onClick={() => { setCompleted(!completed) }}></Checkbox>
             <Title underline={props.important}>{props.title}</Title>
             <CategoryMarker color={props.color}></CategoryMarker>
 

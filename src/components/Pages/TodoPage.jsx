@@ -26,7 +26,7 @@ const TodoPage = () => {
                 <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
                     <Checkbox label='Important' important={true} color='#ff0054' />
                     <Checkbox label='Trabajo' color='#51bbfe' />
-                    <Checkbox label='Tec' color='#41E2BA' />
+                    <Checkbox label='Escuela' color='#41E2BA' />
                     <Checkbox label='HyperK' color='#ffd400' />
                     <Checkbox label='Side projects' color='#5A716A' />
                 </div>

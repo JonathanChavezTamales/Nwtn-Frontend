@@ -14,14 +14,16 @@ const Container = styled.div`
 
 const Window = styled.div`
     width: 60%;
-    border-radius: 5px;
+    height: 100%;
+    border-radius: 3px;
     display: inherit;
     position: fixed;
-    top: 10%;
-    left: 15%;
+    top: -2%;
+    left: 20%;
     background: white;
     z-index: 10;
-    padding: 3rem;
+    padding: 6rem;
+    -webkit-box-sizing: border-box;
 `
 
 const Modal = (props) => {

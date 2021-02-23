@@ -23,6 +23,11 @@ const Footer = styled.footer`
   flex-direction: column;
   align-items: center;
   z-index: 15;
+
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
+
 `
 
 

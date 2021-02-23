@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components'
 import TodoItem from './TodoItem'
 import Button from './UI/Button'
-import Modal from './UI/Modal'
-import Input from './UI/Input'
-import Select from './UI/Select'
-import Date from './UI/Date'
+import TodoModal from './AddTodo'
 
 
 const Container = styled.div`
@@ -26,48 +23,61 @@ const H2 = styled.h2`
 const TodoContainer = (props) => {
 
     const [modalOpen, setModalOpen] = useState(false);
+    const [tasks, setTasks] = useState({
+        today: [],
+        thisweek: [],
+        someday: []
+    });
 
     const showModal = () => {
-        console.log('open please')
         setModalOpen(true);
     }
 
-    const createTask = () => {
-        setModalOpen(false);
-        // Do some logic here
+    const retrieveTasks = () => {
+
+        let p = [{ title: 'tarea de gante', category: 'Escuela', due: 1614055416762, done: true },
+        { title: 'cacota', category: 'Escuela', due: 1614099999000, done: SVGComponentTransferFunctionElement },
+        { title: 'cobrar a rivera', category: undefined, due: 1619099999000, done: false }]
+
+        // Classify by due date (TODO: Do this on server instead)
+        let todayMidnight = new window.Date();
+        todayMidnight.setHours(23, 59, 59, 0);
+
+        let satMidnight = new window.Date();
+        satMidnight.setDate(satMidnight.getDate() + 6 - satMidnight.getDay());
+        satMidnight.setHours(23, 59, 59, 0);
+
+
+        const today = p.filter((task) => task.due < todayMidnight)
+        const thisweek = p.filter((task) => task.due >= todayMidnight && task.due < satMidnight)
+        const someday = p.filter((task) => task.due >= satMidnight)
+
+        setTasks({ today, thisweek, someday })
+    }
+
+    useEffect(() => {
+        retrieveTasks();
+    }, [])
+
+    const createTask = (taskData) => {
+        setTasks({ ...tasks, today: [...tasks.today, taskData] })
     }
 
     return (
         <Container>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <H2>Tasks</H2><Button onClick={showModal} color="#00CC99">+</Button>
+                <H2>Tasks</H2><Button onClick={showModal} color="#43B929">+</Button>
             </div>
+
             <h3>Today</h3>
-            <TodoItem title="Ver curso react" done={true}></TodoItem>
-            <TodoItem title="Ponerme al corriente Tec" done={false} important={true} color='#51bbfe'></TodoItem>
-            <TodoItem title="Ver videos malware" done={false} color='#51bbfe'></TodoItem>
-            <TodoItem title="Contestar a todas las señoras" done={false}></TodoItem>
+            {tasks.today.map((task) => <TodoItem done={task.done} title={task.title}></TodoItem>)}
             <h3 style={{ color: '#555' }}>This week</h3>
+            {tasks.thisweek.map((task) => <TodoItem done={task.done} title={task.title}></TodoItem>)}
             <h3 style={{ color: '#AAA' }}>Someday</h3>
+            {tasks.someday.map((task) => <TodoItem done={task.done} title={task.title}></TodoItem>)}
 
-            <Modal show={modalOpen} setModalOpen={setModalOpen}>
-                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
-                    <h1 style={{ fontSize: '3rem' }}>New task</h1>
-                </div>
+            <TodoModal open={modalOpen} setModalOpen={setModalOpen} createTask={createTask}></TodoModal>
 
-                <form>
-                    <Input placeholder="Task title" big={true} autoFocus></Input>
-                    <Input placeholder="Optional details" autoFocus></Input>
-                    <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                        <Select></Select>
-                        <Date></Date>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '6rem' }}>
-                        <Button color='#00CC99' onClick={createTask}>Create task</Button>
-                    </div>
-
-                </form>
-            </Modal>
         </Container>
     )
 }

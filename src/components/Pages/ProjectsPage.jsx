@@ -20,8 +20,10 @@ const ProjectsPage = () => {
     <Section>
       <H1>Projects</H1>
       <section style={{ paddingLeft: '5rem', display: 'flex', flexWrap: 'wrap' }}>
-        <ProjectCard></ProjectCard>
-        <ProjectCard></ProjectCard>
+        <ProjectCard title='Trabajo' color='#51bbfe'></ProjectCard>
+        <ProjectCard title='Side projects' color='#5A716A'></ProjectCard>
+        <ProjectCard title='Escuela' color='#41E2BA'></ProjectCard>
+        <ProjectCard title='Hyper-K' color='#ffd400'></ProjectCard>
       </section>
     </Section>
   )
