@@ -18,7 +18,7 @@ const TodoModal = (props) => {
             </div>
 
             <Formik
-                initialValues={{ title: '', details: '', category: undefined, due: new window.Date() }}
+                initialValues={{ title: '', details: '', category: undefined, due: new window.Date().toISOString().split('T')[0] }}
                 onSubmit={(values, { resetForm }) => {
                     console.log(values);
                     props.setModalOpen(false);

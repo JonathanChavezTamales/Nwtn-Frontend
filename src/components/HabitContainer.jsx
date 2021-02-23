@@ -21,12 +21,17 @@ const HabitContainer = (props) => {
 
     return (
         <Container>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '2rem' }}>
                 <H2>Habits</H2><Button color="#43B929">+</Button>
             </div>
-            <HabitItem title="Comer una verdura o fruta" done={true}></HabitItem>
-            <HabitItem title="Hacer ejercicio" done={false}></HabitItem>
-            <HabitItem title="Meditar 5 horas" done={false}></HabitItem>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                <HabitItem title="Comer una verdura o fruta" done={true} icon='food'></HabitItem>
+                <HabitItem title="Hacer ejercicio" done={false} icon='exercise'></HabitItem>
+                <HabitItem title="Meditar 5 horas" done={false} icon='mindfulness'></HabitItem>
+                <HabitItem title="Estudiar por mi cuenta" done={true} icon='study' />
+                <HabitItem title="NoFap" done={false} icon='brain' />
+            </div>
+
         </Container>
     )
 }

@@ -43,7 +43,6 @@ const TodoItem = (props) => {
             <Checkbox checked={completed} onClick={() => { setCompleted(!completed) }}></Checkbox>
             <Title underline={props.important}>{props.title}</Title>
             <CategoryMarker color={props.color}></CategoryMarker>
-
         </Item >
     )
 }
