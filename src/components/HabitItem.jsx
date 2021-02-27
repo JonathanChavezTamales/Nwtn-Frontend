@@ -46,6 +46,18 @@ const HabitItem = (props) => {
         if (props.done) setCompleted(true);
     }, [])
 
+    useEffect(() => {
+        fetch('http://localhost:8000/habits', {
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: props.id, completedToday: completed })
+        }).then((res) => {
+        }).catch((err) => { console.log(err) })
+    }, [completed])
+
     return (
         <Item done={completed} onClick={() => { setCompleted(!completed) }}>
             <FontAwesomeIcon icon={pickIcon()} size='2x' style={{ color: completed ? 'white' : '#333', marginBottom: '3rem' }} />

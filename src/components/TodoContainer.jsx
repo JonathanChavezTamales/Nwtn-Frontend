@@ -74,11 +74,11 @@ const TodoContainer = (props) => {
             </div>
 
             <h3>Today</h3>
-            {tasks.today.map((task) => <TodoItem done={task.done} id={task._id} title={task.title} category={task.category}></TodoItem>)}
+            {tasks.today.map((task) => <TodoItem done={task.completed} id={task._id} title={task.title} category={task.category}></TodoItem>)}
             <h3 style={{ color: '#555', marginTop: '2rem' }}>This week</h3>
-            {tasks.thisweek.map((task) => <TodoItem done={task.done} id={task._id} title={task.title} category={task.category}></TodoItem>)}
+            {tasks.thisweek.map((task) => <TodoItem done={task.completed} id={task._id} title={task.title} category={task.category}></TodoItem>)}
             <h3 style={{ color: '#AAA', marginTop: '2rem' }}>Someday</h3>
-            { tasks.someday.map((task) => <TodoItem done={task.done} id={task._id} title={task.title} category={task.category}></TodoItem>)}
+            { tasks.someday.map((task) => <TodoItem done={task.completed} id={task._id} title={task.title} category={task.category}></TodoItem>)}
 
             <TodoModal open={modalOpen} setModalOpen={setModalOpen} createTask={createTask}></TodoModal>
 

@@ -45,8 +45,11 @@ const TodoItem = (props) => {
         }
     }
 
-    const handleCheckboxClick = async () => {
-        await setCompleted(!completed);
+    useEffect(() => {
+        if (props.done) setCompleted(true);
+    }, [])
+
+    useEffect(() => {
         fetch('http://localhost:8000/tasks', {
             method: 'PATCH',
             headers: {
@@ -56,15 +59,11 @@ const TodoItem = (props) => {
             body: JSON.stringify({ id: props.id, completed })
         }).then((res) => {
         }).catch((err) => { console.log(err) })
-    }
-
-    useEffect(() => {
-        if (props.done) setCompleted(true);
-    }, [])
+    }, [completed])
 
     return (
         <Item>
-            <Checkbox checked={completed} onClick={handleCheckboxClick}></Checkbox>
+            <Checkbox checked={completed} onClick={() => { setCompleted(!completed) }}></Checkbox>
             <Title underline={props.important}>{props.title}</Title>
             <CategoryMarker color={() => categoryToColor(props.category)}></CategoryMarker>
         </Item >

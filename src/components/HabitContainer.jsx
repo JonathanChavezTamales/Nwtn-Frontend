@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
 import HabitItem from './HabitItem'
 import Button from './UI/Button'
@@ -21,15 +21,41 @@ const H2 = styled.h2`
 const HabitContainer = (props) => {
 
     const [modalOpen, setModalOpen] = useState(false);
-    const [habits, setHabits] = useState([{ title: "Comer una verdura o fruta", done: true, icon: 'food' },
-    { title: 'Hacer ejercicio', done: false, icon: 'exercise' }, { title: 'estudiar', done: false, icon: 'study' }, { title: 'nofap', done: false, icon: 'brain' }, { title: 'meditar', done: false, icon: 'mindfulness' }]);
-
+    const [habits, setHabits] = useState([])
     const showModal = () => {
         setModalOpen(true);
     }
 
+    const retrieveHabits = () => {
+
+        fetch('http://localhost:8000/habits', { method: 'GET' })
+            .then(res => res.json())
+            .then(data => {
+                setHabits(data);
+            });
+
+    }
+
+    useEffect(() => {
+        retrieveHabits();
+    }, [])
+
     const createHabit = (habitData) => {
-        setHabits([...habits, habitData]);
+        console.log("creating ")
+        console.log(habitData)
+        fetch('http://localhost:8000/habits', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(habitData)
+        }).then((res) => {
+            //TODO: Dont retrieve after submit, its expensive, handle it in client (context)
+            retrieveHabits();
+        }).catch((err) => { console.log(err) })
+
+
     }
 
     return (
@@ -38,7 +64,7 @@ const HabitContainer = (props) => {
                 <H2>Habits</H2><Button color="#43B929" onClick={showModal}>+</Button>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                {habits.map((habit) => <HabitItem title={habit.title} done={habit.done} icon={habit.icon} />)}
+                {habits.map((habit) => <HabitItem title={habit.title} done={habit.completedToday} id={habit._id} icon={habit.icon} />)}
             </div>
 
             <HabitModal open={modalOpen} setModalOpen={setModalOpen} createHabit={createHabit}></HabitModal>
