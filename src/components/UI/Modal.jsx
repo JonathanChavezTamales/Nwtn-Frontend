@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled, { css } from 'styled-components'
 
 const Container = styled.div`
@@ -30,17 +30,9 @@ const Modal = (props) => {
 
     const closeModal = () => {
         props.setModalOpen(false);
-        // TODO: Remove event listener after close
     }
 
-    useEffect(() => {
-        document.addEventListener('keydown', (e) => {
-            console.log(e.key)
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        })
-    })
+    //TODO: Close on esc
 
     const handleClick = (e) => {
         if (e.target.id === 'container') closeModal();

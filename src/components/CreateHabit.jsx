@@ -9,19 +9,20 @@ import { Formik } from 'formik';
 // TODO: Refactor with formik
 
 
-const TodoModal = (props) => {
+const CreateHabit = (props) => {
 
     return (
         <Modal show={props.open} setModalOpen={props.setModalOpen}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
-                <h1 style={{ fontSize: '3rem' }}>New task</h1>
+                <h1 style={{ fontSize: '3rem' }}>New habit</h1>
             </div>
 
             <Formik
-                initialValues={{ title: '', details: '', category: undefined, due: new window.Date().toISOString().split('T')[0] }}
+                initialValues={{ title: '', icon: 'exercise' }}
                 onSubmit={(values, { resetForm }) => {
+                    console.log(values);
                     props.setModalOpen(false);
-                    props.createTask(values);
+                    props.createHabit(values);
                     resetForm();
                 }}
             >
@@ -30,16 +31,13 @@ const TodoModal = (props) => {
                     handleChange,
                     handleSubmit,
                 }) => (<form onSubmit={handleSubmit}>
-                    <Input name='title' value={values.title} required placeholder="Task title" big={true} autoFocus onChange={handleChange}></Input>
-                    <Input name='details' value={values.details} placeholder="Optional details" onChange={handleChange}></Input>
-                    <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                        <Select name='category' placeholder='Select category' options={['HyperK', 'Trabajo']} value={values.category} onChange={handleChange}></Select>
-                        <Date name='due' value={values.due} onChange={handleChange}></Date>
+                    <Input name='title' value={values.title} required placeholder="Habit title" big={true} autoFocus onChange={handleChange}></Input>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <Select name='icon' options={['exercise', 'study', 'brain', 'mindfulness', 'food']} value={values.category} onChange={handleChange}></Select>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '6rem' }}>
-                        <Button type='submit' color='#43B929'>Create task</Button>
+                        <Button type='submit' color='#43B929'>Create habit</Button>
                     </div>
-
                 </form>)}
 
             </Formik>
@@ -49,4 +47,4 @@ const TodoModal = (props) => {
     )
 }
 
-export default TodoModal;
+export default CreateHabit;

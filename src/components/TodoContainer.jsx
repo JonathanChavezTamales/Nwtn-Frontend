@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components'
 import TodoItem from './TodoItem'
 import Button from './UI/Button'
-import TodoModal from './TodoModal'
+import CreateTodo from './CreateTodo'
 
 
 const Container = styled.div`
@@ -80,7 +80,7 @@ const TodoContainer = (props) => {
             <h3 style={{ color: '#AAA', marginTop: '2rem' }}>Someday</h3>
             { tasks.someday.map((task) => <TodoItem done={task.completed} id={task._id} title={task.title} category={task.category}></TodoItem>)}
 
-            <TodoModal open={modalOpen} setModalOpen={setModalOpen} createTask={createTask}></TodoModal>
+            <CreateTodo open={modalOpen} setModalOpen={setModalOpen} createTask={createTask}></CreateTodo>
 
         </Container >
     )

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components'
+import EditTodo from './EditTodo'
 
 const Item = styled.div`
     background: white;
@@ -37,6 +38,7 @@ const CategoryMarker = styled.span`
 const TodoItem = (props) => {
 
     const [completed, setCompleted] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
     const categoryToColor = (category) => {
         switch (category) {
@@ -50,23 +52,32 @@ const TodoItem = (props) => {
     }, [])
 
     useEffect(() => {
-        fetch('http://localhost:8000/tasks', {
+        fetch(`http://localhost:8000/tasks/${props.id}`, {
             method: 'PATCH',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id: props.id, completed })
+            body: JSON.stringify({ completed })
         }).then((res) => {
         }).catch((err) => { console.log(err) })
     }, [completed])
 
+    const handleClick = (e) => {
+        if (e.target.id !== 'checkbox') {
+            setModalOpen(true)
+        }
+    }
+
     return (
-        <Item>
-            <Checkbox checked={completed} onClick={() => { setCompleted(!completed) }}></Checkbox>
-            <Title underline={props.important}>{props.title}</Title>
-            <CategoryMarker color={() => categoryToColor(props.category)}></CategoryMarker>
-        </Item >
+        <>
+            <Item id='item' onClick={handleClick}>
+                <Checkbox id='checkbox' checked={completed} onClick={() => { setCompleted(!completed) }}></Checkbox>
+                <Title underline={props.important}>{props.title}</Title>
+                <CategoryMarker color={() => categoryToColor(props.category)}></CategoryMarker>
+            </Item >
+            <EditTodo open={modalOpen} id={props.id} setModalOpen={setModalOpen}></EditTodo>
+        </>
     )
 }
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
 import HabitItem from './HabitItem'
 import Button from './UI/Button'
-import HabitModal from './HabitModal'
+import CreateHabit from './CreateHabit'
 
 const Container = styled.div`
     width: 33%;
@@ -67,7 +67,7 @@ const HabitContainer = (props) => {
                 {habits.map((habit) => <HabitItem title={habit.title} done={habit.completedToday} id={habit._id} icon={habit.icon} />)}
             </div>
 
-            <HabitModal open={modalOpen} setModalOpen={setModalOpen} createHabit={createHabit}></HabitModal>
+            <CreateHabit open={modalOpen} setModalOpen={setModalOpen} createHabit={createHabit}></CreateHabit>
         </Container>
     )
 }
