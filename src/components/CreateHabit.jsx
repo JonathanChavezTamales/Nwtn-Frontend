@@ -29,7 +29,7 @@ const CreateHabit = (props) => {
                 }) => (<form onSubmit={handleSubmit}>
                     <Input name='title' value={values.title} required placeholder="Habit title" big={true} autoFocus onChange={handleChange}></Input>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Select name='icon' options={['exercise', 'study', 'brain', 'mindfulness', 'food']} value={values.category} onChange={handleChange}></Select>
+                        <Select name='icon' options={['exercise', 'study', 'brain', 'mindfulness', 'food']} value={values.icon} onChange={handleChange}></Select>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '6rem' }}>
                         <Button type='submit' color='#43B929'>Create habit</Button>

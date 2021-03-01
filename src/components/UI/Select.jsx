@@ -18,7 +18,7 @@ const Select = (props) => {
     return (
         <Selector defaultValue={undefined} value={props.value} name={props.name} onChange={props.onChange}>
             {props.placeholder && <option value={undefined}>{props.placeholder || 'Select'}</option>}
-            {props.options && props.options.map((option) => <option value={option} id={option}>{option}</option>)}
+            {props.options && props.options.map((option) => <option value={option} key={option}>{option}</option>)}
         </Selector>
     )
 }

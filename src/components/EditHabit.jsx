@@ -38,6 +38,7 @@ const EditTodo = (props) => {
     }
 
     const deleteHabit = () => {
+
         fetch(`http://localhost:8000/habits/${props._id}`, {
             method: 'DELETE',
             headers: {
@@ -46,18 +47,18 @@ const EditTodo = (props) => {
             }
         }).then((res) => {
             //TODO: Update local state to show when deleted instead of reload
-            window.location.reload()
-        }).catch((err) => { console.log(err) })
+            window.location.reload();
+        }).catch((err) => { console.log('fallo') })
     }
 
     useEffect(() => {
-        console.log('caca')
         retrieveHabit(props._id);
     }, [props._id])
 
     return (
         <Modal title={'Edit habit'} show={props.open} setModalOpen={props.setModalOpen}>
             <Formik
+                enableReinitialize
                 initialValues={habit ? habit : { title: '', icon: 'exercise' }}
                 onSubmit={(values, { resetForm }) => {
                     props.setModalOpen(false);
@@ -72,10 +73,10 @@ const EditTodo = (props) => {
                 }) => (<form onSubmit={handleSubmit}>
                     <Input name='title' value={values.title} required placeholder="Habit title" big={true} autoFocus onChange={handleChange}></Input>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Select name='icon' options={['exercise', 'study', 'brain', 'mindfulness', 'food']} value={values.category} onChange={handleChange}></Select>
+                        <Select name='icon' options={['exercise', 'study', 'brain', 'mindfulness', 'food']} value={values.icon} onChange={handleChange}></Select>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '6rem' }}>
-                        <Button type='submit' color='#43B929'>Update habit</Button>
+                        <Button type='submit' color='#43B929' big>Update habit</Button>
                         <Button onClick={() => { deleteHabit(); props.setModalOpen(false) }} color='#A63D40' big alternate>Delete habit</Button>
                     </div>
                 </form>)}
