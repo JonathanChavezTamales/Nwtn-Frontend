@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import TodoItem from './TodoItem'
 import Button from './UI/Button'
 import CreateTodo from './CreateTodo'
@@ -28,6 +28,7 @@ const TodoContainer = (props) => {
         thisweek: [],
         someday: []
     });
+    const [fetched, setFetched] = useState(false)
 
     const showModal = () => {
         setModalOpen(true);
@@ -43,6 +44,8 @@ const TodoContainer = (props) => {
                     thisweek: data.thisweek,
                     someday: data.someday
                 });
+                console.log(data)
+                setFetched(true)
             });
 
     }
@@ -73,14 +76,20 @@ const TodoContainer = (props) => {
                 <H2>Tasks</H2><Button onClick={showModal} color="#43B929">+</Button>
             </div>
 
-            <h3>Today</h3>
-            {tasks.today.map((task) => <TodoItem done={task.completed} id={task._id} title={task.title} category={task.category}></TodoItem>)}
-            <h3 style={{ color: '#555', marginTop: '2rem' }}>This week</h3>
-            {tasks.thisweek.map((task) => <TodoItem done={task.completed} id={task._id} title={task.title} category={task.category}></TodoItem>)}
-            <h3 style={{ color: '#AAA', marginTop: '2rem' }}>Someday</h3>
-            { tasks.someday.map((task) => <TodoItem done={task.completed} id={task._id} title={task.title} category={task.category}></TodoItem>)}
+            {!fetched ? ':)' :
+                <> < h3 > Today</h3>
+                    {tasks.today.length === 0 && <small>Horray! No tasks for today</small>}
+                    { tasks.today.map((task) => <TodoItem key={task._id} done={task.completed} _id={task._id} title={task.title} category={task.category}></TodoItem>)}
+                    <h3 style={{ color: '#555', marginTop: '2rem' }}>This week</h3>
+                    { tasks.thisweek.map((task) => <TodoItem key={task._id} done={task.completed} _id={task._id} title={task.title} category={task.category}></TodoItem>)}
+                    <h3 style={{ color: '#AAA', marginTop: '2rem' }}>Someday</h3>
+                    { tasks.someday.map((task) => <TodoItem key={task._id} done={task.completed} _id={task._id} title={task.title} category={task.category}></TodoItem>)}
+                </>}
 
-            <CreateTodo open={modalOpen} setModalOpen={setModalOpen} createTask={createTask}></CreateTodo>
+            {fetched && tasks.length === 0 && "You don't have any tasks yet. Start adding them :D"}
+
+            {modalOpen && <CreateTodo open={modalOpen} setModalOpen={setModalOpen} createTask={createTask}></CreateTodo>
+            }
 
         </Container >
     )

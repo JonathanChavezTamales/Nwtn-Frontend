@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TodoContainer from '../TodoContainer'
 import HabitContainer from '../HabitContainer'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import Checkbox from '../UI/Checkbox';
 
 const Section = styled.section`
@@ -25,10 +25,15 @@ const TodoPage = () => {
                 <H1>Todo</H1>
                 <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
                     <Checkbox label='Important' important={true} color='#ff0054' />
-                    <Checkbox label='Trabajo' color='#51bbfe' />
+                    <br />
+                    <h3>Project</h3>
+                    <Checkbox label='Personal' color='#51bbfe' />
                     <Checkbox label='Escuela' color='#41E2BA' />
                     <Checkbox label='HyperK' color='#ffd400' />
                     <Checkbox label='Side projects' color='#5A716A' />
+                    <br />
+                    <h3>Options</h3>
+                    <Checkbox label='Show task details' />
                 </div>
             </div>
 

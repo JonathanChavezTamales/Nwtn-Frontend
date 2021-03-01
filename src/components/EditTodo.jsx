@@ -5,6 +5,7 @@ import Input from './UI/Input'
 import Select from './UI/Select'
 import Date from './UI/Date'
 import { Formik } from 'formik';
+import moment from 'moment'
 
 // TODO: Instead of calling api for filling values, pull them from context
 
@@ -17,13 +18,13 @@ const EditTodo = (props) => {
         fetch(`http://localhost:8000/tasks/${id}`, { method: 'GET' })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                console.log(data.due)
                 setTask(data);
             });
     }
 
     const updateTask = (taskData) => {
-        fetch(`http://localhost:8000/tasks/${props.id}`, {
+        fetch(`http://localhost:8000/tasks/${props._id}`, {
             method: 'PATCH',
             headers: {
                 'Accept': 'application/json',
@@ -31,31 +32,31 @@ const EditTodo = (props) => {
             },
             body: JSON.stringify(taskData)
         }).then((res) => {
-            //TODO: Update local state to show when changed
+            //TODO: Update local state to show when changed instead of reload
+            window.location.reload()
         }).catch((err) => { console.log(err) })
     }
 
     const deleteTask = () => {
-        fetch(`http://localhost:8000/tasks/${props.id}`, {
+        fetch(`http://localhost:8000/tasks/${props._id}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         }).then((res) => {
-            //TODO: Update local state to show when deleted
+            //TODO: Update local state to show when deleted instead of reload
+            window.location.reload()
         }).catch((err) => { console.log(err) })
     }
 
     useEffect(() => {
-        retrieveTask(props.id);
-    }, [props.id])
+        retrieveTask(props._id);
+    }, [props._id])
 
     return (
-        <Modal show={props.open} setModalOpen={props.setModalOpen}>
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
-                <h1 style={{ fontSize: '3rem' }}>Update task</h1>
-            </div>
+        <Modal title={'Edit task'} show={props.open} setModalOpen={props.setModalOpen}>
+
 
             <Formik
                 enableReinitialize
@@ -73,7 +74,7 @@ const EditTodo = (props) => {
                     <Input autoComplete="off" name='title' value={values.title} required placeholder="Task title" big={true} autoFocus onChange={handleChange}></Input>
                     <Input autoComplete="off" name='details' value={values.details} placeholder="Optional details" onChange={handleChange}></Input>
                     <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                        <Select name='category' placeholder='Select category' options={['HyperK', 'Trabajo']} value={values.category} onChange={handleChange}></Select>
+                        <Select name='category' placeholder='Select category' options={['HyperK', 'Personal', 'Escuela', 'Side Projects']} value={values.category} onChange={handleChange}></Select>
                         <Date name='due' value={values.due} onChange={handleChange}></Date>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '6rem' }}>
@@ -84,8 +85,6 @@ const EditTodo = (props) => {
                 </form>)}
 
             </Formik>
-
-            {props.children}
         </Modal>
     )
 

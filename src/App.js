@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import Wallpaper from './components/Wallpaper';
 import TodoPage from './components/Pages/TodoPage';
 import ProjectsPage from './components/Pages/ProjectsPage';

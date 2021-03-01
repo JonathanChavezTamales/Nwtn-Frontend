@@ -1,7 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import styled, { css } from 'styled-components'
-import { faAppleAlt, faBookOpen, faBrain, faDumbbell, faSpa } from "@fortawesome/free-solid-svg-icons";
+import styled from 'styled-components'
+import { faAppleAlt, faBookOpen, faBrain, faDumbbell, faSpa, faInfo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import EditHabit from './EditHabit'
+
+const EditButton = styled.div`
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -.5rem;
+    right: -.5rem;
+    background: white;
+    border: 2px solid #a4e096;
+    border-radius: 100%;
+    display: none;
+
+    justify-content: center;
+    align-items:center;
+
+    &:hover {
+        display: flex;
+    }
+`
 
 const Item = styled.div`
     background: ${props => props.done ? '#a4e096' : 'white'};
@@ -19,6 +39,12 @@ const Item = styled.div`
     justify-content: center;
     user-select: none;
     box-sizing: border-box;
+    position: relative;
+
+
+    &:hover ${EditButton} {
+        display: flex;
+    }
 `
 
 
@@ -27,7 +53,12 @@ const Title = styled.div`
     color: wh9
 `
 
+
+
 const HabitItem = (props) => {
+
+    const [completed, setCompleted] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
     const pickIcon = () => {
         switch (props.icon) {
@@ -40,20 +71,23 @@ const HabitItem = (props) => {
         }
     }
 
-    const [completed, setCompleted] = useState(false);
+    const handleInfoClick = (e) => {
+        e.stopPropagation();
+        setModalOpen(true)
+    }
 
     useEffect(() => {
         if (props.done) setCompleted(true);
     }, [])
 
     useEffect(() => {
-        fetch('http://localhost:8000/habits', {
+        fetch(`http://localhost:8000/habits/${props.id}`, {
             method: 'PATCH',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id: props.id, completedToday: completed })
+            body: JSON.stringify({ completedToday: completed })
         }).then((res) => {
         }).catch((err) => { console.log(err) })
     }, [completed])
@@ -62,7 +96,13 @@ const HabitItem = (props) => {
         <Item done={completed} onClick={() => { setCompleted(!completed) }}>
             <FontAwesomeIcon icon={pickIcon()} size='2x' style={{ color: completed ? 'white' : '#333', marginBottom: '3rem' }} />
             <Title style={{ color: completed ? 'white' : '#333' }}>{props.title}</Title>
-        </Item>
+            <EditButton id='editbutton' onClick={handleInfoClick}>
+                <FontAwesomeIcon icon={faInfo} style={{ color: '#aaa' }} />
+            </EditButton>
+            {
+                modalOpen && <EditHabit open={modalOpen} setModalOpen={setModalOpen} _id={props.id}></EditHabit>
+            }
+        </Item >
     )
 }
 

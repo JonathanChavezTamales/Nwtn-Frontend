@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const Container = styled.div`
     width: 100%;
@@ -13,16 +13,17 @@ const Container = styled.div`
 `
 
 const Window = styled.div`
-    width: 60%;
-    height: 100%;
+    width: 100%;
     border-radius: 3px;
-    display: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
     position: fixed;
-    top: -2%;
-    left: 20%;
+    top: 10%;
+    left: 0%;
     background: white;
     z-index: 10;
-    padding: 6rem;
+    padding: 3rem;
     -webkit-box-sizing: border-box;
 `
 
@@ -41,7 +42,13 @@ const Modal = (props) => {
     return (
         <Container id='container' show={props.show} onClick={handleClick}>
             <Window id='window' onClick={handleClick}>
-                {props.children}
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
+                    <h1 style={{ fontSize: '3rem', margin: '0' }}>{props.title}</h1>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', width: '66%' }}>
+                    {props.children}
+                </div>
+
             </Window>
         </Container>
     )

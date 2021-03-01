@@ -12,11 +12,7 @@ import { Formik } from 'formik';
 const CreateHabit = (props) => {
 
     return (
-        <Modal show={props.open} setModalOpen={props.setModalOpen}>
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
-                <h1 style={{ fontSize: '3rem' }}>New habit</h1>
-            </div>
-
+        <Modal title={'New habit'} show={props.open} setModalOpen={props.setModalOpen}>
             <Formik
                 initialValues={{ title: '', icon: 'exercise' }}
                 onSubmit={(values, { resetForm }) => {

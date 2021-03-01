@@ -20,10 +20,13 @@ const ProjectsPage = () => {
     <Section>
       <H1>Projects</H1>
       <section style={{ paddingLeft: '5rem', display: 'flex', flexWrap: 'wrap' }}>
-        <ProjectCard title='Trabajo' color='#51bbfe'></ProjectCard>
+        <ProjectCard title='Personal' color='#51bbfe'></ProjectCard>
         <ProjectCard title='Side projects' color='#5A716A'></ProjectCard>
         <ProjectCard title='Escuela' color='#41E2BA'></ProjectCard>
         <ProjectCard title='Hyper-K' color='#ffd400'></ProjectCard>
+        <div style={{ display: 'flex', cursor: 'pointer', justifyContent: 'center', alignItems: 'center', border: '3px #ccc dashed', width: '30rem', height: '16rem' }}>
+          <h3 style={{ color: '#ccc' }}>Add a project</h3>
+        </div>
       </section>
     </Section>
   )

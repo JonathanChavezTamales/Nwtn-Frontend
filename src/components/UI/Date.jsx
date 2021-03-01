@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
+import moment from 'moment'
 
 
 const Input = styled.input`
@@ -19,7 +20,7 @@ const Select = (props) => {
     return (
         <>
             <label htmlFor="date">Due date:</label>
-            <Input value={props.value} name={props.name} onChange={props.onChange} type='date'>
+            <Input value={moment(props.value).format("yyyy-MM-DD")} name={props.name} onChange={props.onChange} type='date'>
 
             </Input>
         </>

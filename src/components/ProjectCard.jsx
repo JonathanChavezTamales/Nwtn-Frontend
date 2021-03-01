@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const Project = styled.div`
     width: 30rem;
     height: 16rem;
-    padding-left: .5rem;
+    padding-left: 1rem;
     margin-right: 2rem;
     margin-bottom: 3rem;
     background: ${props => props.color || 'gray'};
     box-shadow: 1px 1px 2.5rem 1px #DDD;
+    box-sizing: border-box;
+    cursor: pointer;
 `
 
 const Title = styled.div`

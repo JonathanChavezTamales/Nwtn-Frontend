@@ -25,6 +25,7 @@ const HabitContainer = (props) => {
     const showModal = () => {
         setModalOpen(true);
     }
+    const [fetched, setFetched] = useState(false)
 
     const retrieveHabits = () => {
 
@@ -32,6 +33,7 @@ const HabitContainer = (props) => {
             .then(res => res.json())
             .then(data => {
                 setHabits(data);
+                setFetched(true);
             });
 
     }
@@ -63,11 +65,16 @@ const HabitContainer = (props) => {
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '2rem' }}>
                 <H2>Habits</H2><Button color="#43B929" onClick={showModal}>+</Button>
             </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                {habits.map((habit) => <HabitItem title={habit.title} done={habit.completedToday} id={habit._id} icon={habit.icon} />)}
-            </div>
 
-            <CreateHabit open={modalOpen} setModalOpen={setModalOpen} createHabit={createHabit}></CreateHabit>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                {!fetched ? ':)' :
+                    habits.map((habit) => <HabitItem key={habit._id} title={habit.title} done={habit.completedToday} id={habit._id} icon={habit.icon} />)
+                }
+                {fetched && habits.length === 0 && "You don't have any habits yet. Add one ;)"}
+            </div>
+            {
+                modalOpen && <CreateHabit open={modalOpen} setModalOpen={setModalOpen} createHabit={createHabit}></CreateHabit>
+            }
         </Container>
     )
 }
