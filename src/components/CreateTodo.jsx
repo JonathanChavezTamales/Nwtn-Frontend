@@ -16,6 +16,7 @@ const CreateTodo = (props) => {
                 onSubmit={(values, { resetForm }) => {
                     props.setModalOpen(false);
                     props.createTask(values);
+                    console.log(values)
                     resetForm();
                 }}
             >

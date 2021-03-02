@@ -30,6 +30,7 @@ background: transparent;
 margin-right: .2rem;
 text-decoration: none;
 cursor: pointer;
+font-weight: 400;
 
 
 &:hover {
@@ -57,8 +58,8 @@ const LinkContainer = styled.div`
 
 const activeLinkStyle = {
     color: 'white',
-    fontWeight: 700,
-    background: 'black'
+    background: 'black',
+    boxSizing: 'border-box'
 }
 
 const TodoItem = (props) => {

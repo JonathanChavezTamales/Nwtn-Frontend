@@ -3,6 +3,9 @@ import TodoContainer from '../TodoContainer'
 import HabitContainer from '../HabitContainer'
 import styled from 'styled-components'
 import Checkbox from '../UI/Checkbox';
+import { useHistory } from 'react-router-dom';
+import KeyboardEventHandler from 'react-keyboard-event-handler';
+
 
 const Section = styled.section`
   display: flex;
@@ -19,6 +22,14 @@ const H1 = styled.h1`
 `
 
 const TodoPage = () => {
+
+    const history = useHistory();
+
+    const handleKey = (key, e) => {
+        if (key === 'right') history.push('/projects')
+        else if (key === 'left') history.push('/calendar')
+    }
+
     return (
         <Section>
             <div style={{ borderRight: '2px solid #DDD', paddingRight: '20px', width: '20%' }}>
@@ -32,13 +43,13 @@ const TodoPage = () => {
                     <Checkbox label='HyperK' color='#ffd400' />
                     <Checkbox label='Side projects' color='#5A716A' />
                     <br />
-                    <h3>Options</h3>
-                    <Checkbox label='Show task details' />
                 </div>
             </div>
 
             <TodoContainer />
             <HabitContainer />
+
+            <KeyboardEventHandler handleKeys={['left', 'right']} onKeyEvent={handleKey} />
         </Section>
     )
 }

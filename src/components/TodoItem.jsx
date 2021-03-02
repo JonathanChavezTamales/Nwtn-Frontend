@@ -9,6 +9,8 @@ const Item = styled.div`
     cursor: pointer;
     margin-bottom: .7rem;
     display: flex;
+    align-items:center;
+    position: relative;
     background: ${props => props.checked ? '#a4e096' : 'white'}
 `
 
@@ -27,12 +29,22 @@ const Title = styled.div`
     ${props => props.underline ? 'border-bottom: 2px dotted #ff0054;' : ''}
 `
 
-const CategoryMarker = styled.span`
-    width: .3rem;
-
-    background: ${props => props.color ? props.color : 'transparent'};
-    margin-right: .3rem;
+const CategoryMarker = styled.div`
+    width: .5rem;
+    height: 1.6rem;
     margin-left: auto;
+    background: ${props => props.color ? props.color : 'transparent'};
+    justify-self: flex-end;
+`
+
+const Reminder = styled.span`
+    background: blue;
+    font-weight: 700;
+    font-size: .7rem;
+    color: white;
+    border-radius: 4px;
+    margin-left: auto;
+    padding: 3px 10px;
 `
 
 const TodoItem = (props) => {
@@ -77,6 +89,8 @@ const TodoItem = (props) => {
             <Item id='item' checked={completed} onClick={handleClick}>
                 <Checkbox id='checkbox' checked={completed} onClick={() => { setCompleted(!completed) }}></Checkbox>
                 <Title underline={props.important}>{props.title}</Title>
+                {props.reminder && <Reminder>{props.reminder}</Reminder>}
+
                 <CategoryMarker color={() => categoryToColor(props.category)}></CategoryMarker>
             </Item >
             {modalOpen && <EditTodo open={modalOpen} _id={props._id} setModalOpen={setModalOpen}></EditTodo>

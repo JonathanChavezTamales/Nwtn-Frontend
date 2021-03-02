@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import TodoItem from './TodoItem'
 import Button from './UI/Button'
 import CreateTodo from './CreateTodo'
+import KeyboardEventHandler from 'react-keyboard-event-handler';
+import moment from 'moment';
+
 
 
 const Container = styled.div`
@@ -40,6 +43,7 @@ const TodoContainer = (props) => {
             .then(res => res.json())
             .then(data => {
                 setTasks({
+                    expired: data.expired,
                     today: data.today,
                     thisweek: data.thisweek,
                     someday: data.someday
@@ -72,17 +76,22 @@ const TodoContainer = (props) => {
 
     return (
         <Container>
+            <KeyboardEventHandler handleKeys={['n']}
+                onKeyEvent={showModal}></KeyboardEventHandler>
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <H2>Tasks</H2><Button onClick={showModal} color="#43B929">+</Button>
             </div>
 
-            {!fetched ? ':)' :
-                <> < h3 > Today</h3>
-                    {tasks.today.length === 0 && <small>Horray! No tasks for today</small>}
+            {!fetched ? '' :
+                <>
+                    {tasks.expired.length > 0 && < h3 style={{ color: '#ff0054' }} >Expired</h3>}
+                    { tasks.expired.map((task) => <TodoItem key={task._id} done={task.completed} _id={task._id} title={task.title} category={task.category}></TodoItem>)}
+                    < h3 style={{ marginTop: tasks.expired.length > 0 ? '2rem' : 'default' }} >Today</h3>
+                    {tasks.today.length === 0 && <small>No tasks for today. Go enjoy your life!</small>}
                     { tasks.today.map((task) => <TodoItem key={task._id} done={task.completed} _id={task._id} title={task.title} category={task.category}></TodoItem>)}
                     <h3 style={{ color: '#555', marginTop: '2rem' }}>This week</h3>
-                    { tasks.thisweek.map((task) => <TodoItem key={task._id} done={task.completed} _id={task._id} title={task.title} category={task.category}></TodoItem>)}
-                    <h3 style={{ color: '#AAA', marginTop: '2rem' }}>Someday</h3>
+                    { tasks.thisweek.map((task) => <TodoItem key={task._id} reminder={moment(task.due).fromNow()} done={task.completed} _id={task._id} title={task.title} category={task.category}></TodoItem>)}
+                    <h3 style={{ color: '#AAA', marginTop: '2rem' }}>Later than this week</h3>
                     { tasks.someday.map((task) => <TodoItem key={task._id} done={task.completed} _id={task._id} title={task.title} category={task.category}></TodoItem>)}
                 </>}
 

@@ -56,8 +56,6 @@ const HabitContainer = (props) => {
             //TODO: Dont retrieve after submit, its expensive, handle it in client (context)
             retrieveHabits();
         }).catch((err) => { console.log(err) })
-
-
     }
 
     return (
@@ -67,7 +65,7 @@ const HabitContainer = (props) => {
             </div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                {!fetched ? ':)' :
+                {!fetched ? '' :
                     habits.map((habit) => <HabitItem key={habit._id} title={habit.title} done={habit.completedToday} id={habit._id} icon={habit.icon} />)
                 }
                 {fetched && habits.length === 0 && "You don't have any habits yet. Add one ;)"}

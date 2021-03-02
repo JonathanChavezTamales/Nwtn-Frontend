@@ -5,11 +5,11 @@ import Wallpaper from './components/Wallpaper';
 import TodoPage from './components/Pages/TodoPage';
 import ProjectsPage from './components/Pages/ProjectsPage';
 import CalendarPage from './components/Pages/CalendarPage';
+import KeyboardEventHandler from 'react-keyboard-event-handler';
+
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 const Footer = styled.footer`
@@ -48,6 +48,7 @@ const App = () => {
         <div><small>A. Einstein</small></div>
       </Footer>
       <Wallpaper show={showWallpaper} setShowWallpaper={setShowWallpaper} />
+
     </Router>
   )
 }

@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components'
+import KeyboardEventHandler from 'react-keyboard-event-handler';
+
 
 const Container = styled.div`
     width: 100%;
@@ -41,6 +43,8 @@ const Modal = (props) => {
 
     return (
         <Container id='container' show={props.show} onClick={handleClick}>
+            <KeyboardEventHandler handleKeys={['esc']} isExclusive={true}
+                handleFocusableElements={true} onKeyEvent={closeModal}></KeyboardEventHandler>
             <Window id='window' onClick={handleClick}>
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
                     <h1 style={{ fontSize: '3rem', margin: '0' }}>{props.title}</h1>

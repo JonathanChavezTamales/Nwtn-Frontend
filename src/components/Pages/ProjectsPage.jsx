@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
 import ProjectCard from '../ProjectCard'
+import { useHistory } from 'react-router-dom';
+import KeyboardEventHandler from 'react-keyboard-event-handler';
 
 const Section = styled.section`
   padding: 1rem;
@@ -16,6 +18,14 @@ const H1 = styled.h1`
 `
 
 const ProjectsPage = () => {
+
+  const history = useHistory();
+
+  const handleKey = (key, e) => {
+    if (key === 'right') history.push('/calendar')
+    else if (key === 'left') history.push('/')
+  }
+
   return (
     <Section>
       <H1>Projects</H1>
@@ -28,6 +38,7 @@ const ProjectsPage = () => {
           <h3 style={{ color: '#ccc' }}>Add a project</h3>
         </div>
       </section>
+      <KeyboardEventHandler handleKeys={['left', 'right']} onKeyEvent={handleKey} />
     </Section>
   )
 }
