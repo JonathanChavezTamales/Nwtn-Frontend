@@ -20,21 +20,20 @@ const Checkbox = styled.span`
     border-radius: 2px;
     border: ${props => props.checked ? '#8fca87' : '#ccc'} solid 2px;
     margin-right: 1rem;
-    background: ${props => props.checked ? '#8fca87' : 'inherit'}
-`
+    background: ${props => props.checked ? '#8fca87' : 'inherit'};
+    border-left: 4px solid ${props => props.category};
+    ${props => props.checked ? 'border-left: #8fca87 solid 2px;' : ''}
+    `
 
 const Title = styled.div`
     align-self: center;
-
-    ${props => props.underline ? 'border-bottom: 2px solid #ff0054;' : ''}
+    font-weight: 500;
 `
 
-const CategoryMarker = styled.div`
+const ImportantMarker = styled.div`
     width: .3rem;
-    height: 1.6rem;
-    border-radius: 2px;
-    margin-left: .5rem;
-    background: ${props => props.color ? props.color : 'transparent'};
+    height: 1.7rem;
+    background: #ff0054;
     justify-self: flex-end;
 `
 
@@ -62,7 +61,7 @@ const TodoItem = (props) => {
             case 'HyperK': return '#ffd400';
             case 'Escuela': return '#41E2BA';
             case 'Side Projects': return '#5A716A';
-            default: return 'transparent';
+            default: return '#ccc';
         }
     }
 
@@ -93,11 +92,11 @@ const TodoItem = (props) => {
     return (
         <>
             <Item id='item' checked={completed} onClick={handleClick}>
-                <Checkbox id='checkbox' checked={completed} onClick={handleCheck}></Checkbox>
-                <Title underline={props.important}>{props.title}</Title>
+                <Checkbox id='checkbox' checked={completed} onClick={handleCheck} category={() => categoryToColor(props.category)}></Checkbox>
+                <Title>{props.title}</Title>
                 <div style={{ display: 'flex', marginLeft: 'auto' }}>
                     {props.reminder && <Reminder>{props.reminder}</Reminder>}
-                    <CategoryMarker color={() => categoryToColor(props.category)}></CategoryMarker>
+                    {props.important && <ImportantMarker />}
                 </div>
 
             </Item >

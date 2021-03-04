@@ -28,10 +28,11 @@ const Item = styled.div`
     box-shadow: 1px 1px 7px 1px #DDD;
     padding: 1rem;
     height: 10rem;
+    font-weight: 500;
     width: 10rem;
     margin-right: 2rem;
     margin-bottom: 2rem;
-    color: background: ${props => props.done ? 'white' : '#333'};
+    color: ${props => props.done ? 'white' : '#333'};
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -98,9 +99,11 @@ const HabitItem = (props) => {
         <Item done={completed} onClick={handleCheck}>
             <FontAwesomeIcon icon={pickIcon()} size='2x' style={{ color: completed ? 'white' : '#333', marginBottom: '3rem' }} />
             <Title style={{ color: completed ? 'white' : '#333' }}>{props.title}</Title>
-            Streak: {completed ? props.streak + 1 : props.streak}
+            <small style={{
+                marginTop: '.4rem'
+            }}>{completed ? props.streak + 1 : props.streak}</small>
             <EditButton id='editbutton' onClick={handleInfoClick}>
-                <FontAwesomeIcon icon={faInfo} style={{ color: '#aaa' }} />
+                < FontAwesomeIcon icon={faInfo} style={{ color: '#aaa' }} />
             </EditButton>
             {
                 modalOpen && <EditHabit open={modalOpen} setModalOpen={setModalOpen} _id={props.id}></EditHabit>
