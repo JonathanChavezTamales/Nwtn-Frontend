@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Button from './UI/Button'
-import Modal from './UI/Modal'
-import Input from './UI/Input'
-import Select from './UI/Select'
-import Date from './UI/Date'
+import Button from '../UI/Button'
+import Modal from '../UI/Modal'
+import Input from '../UI/Input'
+import Select from '../UI/Select'
+import Date from '../UI/Date'
+import TextArea from '../UI/TextArea'
 import { Formik } from 'formik';
-import moment from 'moment'
 
 // TODO: Instead of calling api for filling values, pull them from context
 
@@ -72,14 +72,14 @@ const EditTodo = (props) => {
                     handleSubmit,
                 }) => (<form onSubmit={handleSubmit}>
                     <Input autoComplete="off" name='title' value={values.title} required placeholder="Task title" big={true} autoFocus onChange={handleChange}></Input>
-                    <Input autoComplete="off" name='details' value={values.details} placeholder="Optional details" onChange={handleChange}></Input>
+                    <TextArea autoComplete="off" onChange={handleChange} rows={10} name='details' value={values.details} cols={64} placeholder='Optional details'></TextArea>
                     <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
                         <Select name='category' placeholder='Select category' options={['HyperK', 'Personal', 'Escuela', 'Side Projects']} value={values.category} onChange={handleChange}></Select>
                         <Date name='due' value={values.due} onChange={handleChange}></Date>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '6rem' }}>
-                        <Button type='submit' color='#43B929' big>Update task</Button>
                         <Button onClick={() => { deleteTask(); props.setModalOpen(false) }} color='#A63D40' big alternate>Delete task</Button>
+                        <Button type='submit' color='#43B929' big>Update task</Button>
                     </div>
 
                 </form>)}

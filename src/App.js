@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header'
 import styled from 'styled-components'
 import Wallpaper from './components/Wallpaper';
 import TodoPage from './components/Pages/TodoPage';
 import ProjectsPage from './components/Pages/ProjectsPage';
 import CalendarPage from './components/Pages/CalendarPage';
-import KeyboardEventHandler from 'react-keyboard-event-handler';
 
 import {
   BrowserRouter as Router,

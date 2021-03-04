@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Button from './UI/Button'
-import Modal from './UI/Modal'
-import Input from './UI/Input'
-import Select from './UI/Select'
-import Date from './UI/Date'
+import Button from '../UI/Button'
+import Modal from '../UI/Modal'
+import Input from '../UI/Input'
+import Select from '../UI/Select'
 import { Formik } from 'formik';
-import moment from 'moment'
+
 
 // TODO: Instead of calling api for filling values, pull them from context
 
@@ -73,11 +72,12 @@ const EditTodo = (props) => {
                 }) => (<form onSubmit={handleSubmit}>
                     <Input name='title' value={values.title} required placeholder="Habit title" big={true} autoFocus onChange={handleChange}></Input>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Select name='icon' options={['exercise', 'study', 'brain', 'mindfulness', 'food']} value={values.icon} onChange={handleChange}></Select>
+                        <Select name='icon' options={['exercise', 'study', 'brain', 'mindfulness', 'food', 'music']} value={values.icon} onChange={handleChange}></Select>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '6rem' }}>
-                        <Button type='submit' color='#43B929' big>Update habit</Button>
+
                         <Button onClick={() => { deleteHabit(); props.setModalOpen(false) }} color='#A63D40' big alternate>Delete habit</Button>
+                        <Button type='submit' color='#43B929' big>Update habit</Button>
                     </div>
                 </form>)}
 

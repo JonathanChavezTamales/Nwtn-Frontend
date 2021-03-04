@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Button from './UI/Button'
-import Modal from './UI/Modal'
-import Input from './UI/Input'
-import Select from './UI/Select'
-import Date from './UI/Date'
+import Button from '../UI/Button'
+import Modal from '../UI/Modal'
+import Input from '../UI/Input'
+import Select from '../UI/Select'
+import Date from '../UI/Date'
+import TextArea from '../UI/TextArea'
 import { Formik } from 'formik';
 
 const CreateTodo = (props) => {
@@ -26,7 +27,7 @@ const CreateTodo = (props) => {
                     handleSubmit,
                 }) => (<form onSubmit={handleSubmit}>
                     <Input autoComplete="off" name='title' value={values.title} required placeholder="Task title" big={true} autoFocus onChange={handleChange}></Input>
-                    <Input autoComplete="off" name='details' value={values.details} placeholder="Optional details" onChange={handleChange}></Input>
+                    <TextArea autoComplete="off" onChange={handleChange} rows={10} name='details' value={values.details} cols={64} placeholder='Optional details'></TextArea>
                     <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
                         <Select name='category' placeholder='Select category' options={['HyperK', 'Personal', 'Escuela', 'Side Projects']} value={values.category} onChange={handleChange}></Select>
                         <Date name='due' value={values.due} onChange={handleChange}></Date>

@@ -18,32 +18,36 @@ const Checkbox = styled.span`
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 2px;
-    border: ${props => props.checked ? '#fff' : '#ccc'} solid 2px;
+    border: ${props => props.checked ? '#8fca87' : '#ccc'} solid 2px;
     margin-right: 1rem;
-    background: ${props => props.checked ? '#97d389' : 'inherit'}
+    background: ${props => props.checked ? '#8fca87' : 'inherit'}
 `
 
 const Title = styled.div`
     align-self: center;
 
-    ${props => props.underline ? 'border-bottom: 2px dotted #ff0054;' : ''}
+    ${props => props.underline ? 'border-bottom: 2px solid #ff0054;' : ''}
 `
 
 const CategoryMarker = styled.div`
-    width: .5rem;
+    width: .3rem;
     height: 1.6rem;
-    margin-left: auto;
+    border-radius: 2px;
+    margin-left: .5rem;
     background: ${props => props.color ? props.color : 'transparent'};
     justify-self: flex-end;
 `
 
 const Reminder = styled.span`
-    background: blue;
+    background: #f37068;
     font-weight: 700;
     font-size: .7rem;
     color: white;
     border-radius: 4px;
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
     padding: 3px 10px;
 `
 
@@ -66,32 +70,36 @@ const TodoItem = (props) => {
         if (props.done) setCompleted(true);
     }, [])
 
-    useEffect(() => {
-        fetch(`http://localhost:8000/tasks/${props._id}`, {
-            method: 'PATCH',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ completed })
-        }).then((res) => {
-        }).catch((err) => { console.log(err) })
-    }, [completed])
-
     const handleClick = (e) => {
         if (e.target.id !== 'checkbox') {
             setModalOpen(true)
         }
     }
 
+    const handleCheck = () => {
+
+        fetch(`http://localhost:8000/tasks/${props._id}`, {
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ completed: !completed })
+        }).then((res) => {
+            setCompleted(!completed);
+        }).catch((err) => { console.log(err) })
+    }
+
     return (
         <>
             <Item id='item' checked={completed} onClick={handleClick}>
-                <Checkbox id='checkbox' checked={completed} onClick={() => { setCompleted(!completed) }}></Checkbox>
+                <Checkbox id='checkbox' checked={completed} onClick={handleCheck}></Checkbox>
                 <Title underline={props.important}>{props.title}</Title>
-                {props.reminder && <Reminder>{props.reminder}</Reminder>}
+                <div style={{ display: 'flex', marginLeft: 'auto' }}>
+                    {props.reminder && <Reminder>{props.reminder}</Reminder>}
+                    <CategoryMarker color={() => categoryToColor(props.category)}></CategoryMarker>
+                </div>
 
-                <CategoryMarker color={() => categoryToColor(props.category)}></CategoryMarker>
             </Item >
             {modalOpen && <EditTodo open={modalOpen} _id={props._id} setModalOpen={setModalOpen}></EditTodo>
             }

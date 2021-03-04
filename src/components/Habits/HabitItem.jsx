@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
-import { faAppleAlt, faBookOpen, faBrain, faDumbbell, faSpa, faInfo } from "@fortawesome/free-solid-svg-icons";
+import { faAppleAlt, faBookOpen, faBrain, faDumbbell, faSpa, faInfo, faMusic } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EditHabit from './EditHabit'
 
@@ -67,6 +67,7 @@ const HabitItem = (props) => {
             case 'food': return faAppleAlt;
             case 'study': return faBookOpen;
             case 'brain': return faBrain;
+            case 'music': return faMusic;
             default: return faSpa;
         }
     }
@@ -80,22 +81,24 @@ const HabitItem = (props) => {
         if (props.done) setCompleted(true);
     }, [])
 
-    useEffect(() => {
+    const handleCheck = () => {
         fetch(`http://localhost:8000/habits/${props.id}`, {
             method: 'PATCH',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ completedToday: completed })
+            body: JSON.stringify({ completedToday: !completed })
         }).then((res) => {
+            setCompleted(!completed)
         }).catch((err) => { console.log(err) })
-    }, [completed])
+    }
 
     return (
-        <Item done={completed} onClick={() => { setCompleted(!completed) }}>
+        <Item done={completed} onClick={handleCheck}>
             <FontAwesomeIcon icon={pickIcon()} size='2x' style={{ color: completed ? 'white' : '#333', marginBottom: '3rem' }} />
             <Title style={{ color: completed ? 'white' : '#333' }}>{props.title}</Title>
+            Streak: {completed ? props.streak + 1 : props.streak}
             <EditButton id='editbutton' onClick={handleInfoClick}>
                 <FontAwesomeIcon icon={faInfo} style={{ color: '#aaa' }} />
             </EditButton>

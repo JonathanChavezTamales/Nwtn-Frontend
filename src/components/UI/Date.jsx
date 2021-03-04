@@ -12,7 +12,7 @@ const Input = styled.input`
 
     &:focus{
         outline-width: 0;
-        border-bottom: 2px dashed black;
+        border-bottom: 2px solid black;
     }
 `
 

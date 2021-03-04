@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import TodoContainer from '../TodoContainer'
-import HabitContainer from '../HabitContainer'
+import TodoContainer from '../Todo/TodoContainer'
+import HabitContainer from '../Habits/HabitContainer'
 import styled from 'styled-components'
 import Checkbox from '../UI/Checkbox';
 import { useHistory } from 'react-router-dom';

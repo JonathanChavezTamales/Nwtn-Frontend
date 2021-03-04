@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
 import TodoItem from './TodoItem'
-import Button from './UI/Button'
+import Button from '../UI/Button'
 import CreateTodo from './CreateTodo'
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import moment from 'moment';
@@ -86,12 +86,12 @@ const TodoContainer = (props) => {
                 <>
                     {tasks.expired.length > 0 && < h3 style={{ color: '#ff0054' }} >Expired</h3>}
                     { tasks.expired.map((task) => <TodoItem key={task._id} done={task.completed} _id={task._id} title={task.title} category={task.category}></TodoItem>)}
-                    < h3 style={{ marginTop: tasks.expired.length > 0 ? '2rem' : 'default' }} >Today</h3>
+                    < h3 style={{ marginTop: tasks.expired.length > 0 ? '2rem' : 'default' }} >Today ({moment().format('dddd')})</h3>
                     {tasks.today.length === 0 && <small>No tasks for today. Go enjoy your life!</small>}
                     { tasks.today.map((task) => <TodoItem key={task._id} done={task.completed} _id={task._id} title={task.title} category={task.category}></TodoItem>)}
-                    <h3 style={{ color: '#555', marginTop: '2rem' }}>This week</h3>
+                    <h3 style={{ color: '#555', marginTop: '2rem' }}>Rest of the week</h3>
                     { tasks.thisweek.map((task) => <TodoItem key={task._id} reminder={moment(task.due).fromNow()} done={task.completed} _id={task._id} title={task.title} category={task.category}></TodoItem>)}
-                    <h3 style={{ color: '#AAA', marginTop: '2rem' }}>Later than this week</h3>
+                    <h3 style={{ color: '#AAA', marginTop: '2rem' }}>Someday</h3>
                     { tasks.someday.map((task) => <TodoItem key={task._id} done={task.completed} _id={task._id} title={task.title} category={task.category}></TodoItem>)}
                 </>}
 

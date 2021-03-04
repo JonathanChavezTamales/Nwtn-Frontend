@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
 import HabitItem from './HabitItem'
-import Button from './UI/Button'
+import Button from '../UI/Button'
 import CreateHabit from './CreateHabit'
 
 const Container = styled.div`
@@ -66,7 +66,7 @@ const HabitContainer = (props) => {
 
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {!fetched ? '' :
-                    habits.map((habit) => <HabitItem key={habit._id} title={habit.title} done={habit.completedToday} id={habit._id} icon={habit.icon} />)
+                    habits.map((habit) => <HabitItem key={habit._id} title={habit.title} done={habit.completedToday} id={habit._id} icon={habit.icon} streak={habit.streak} />)
                 }
                 {fetched && habits.length === 0 && "You don't have any habits yet. Add one ;)"}
             </div>

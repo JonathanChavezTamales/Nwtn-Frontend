@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import Button from './UI/Button'
-import Modal from './UI/Modal'
-import Input from './UI/Input'
-import Select from './UI/Select'
-import Date from './UI/Date'
+import React from 'react';
+import Button from '../UI/Button'
+import Modal from '../UI/Modal'
+import Input from '../UI/Input'
+import Select from '../UI/Select'
 import { Formik } from 'formik';
 
 // TODO: Refactor with formik
@@ -29,7 +28,7 @@ const CreateHabit = (props) => {
                 }) => (<form onSubmit={handleSubmit}>
                     <Input name='title' value={values.title} required placeholder="Habit title" big={true} autoFocus onChange={handleChange}></Input>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Select name='icon' options={['exercise', 'study', 'brain', 'mindfulness', 'food']} value={values.icon} onChange={handleChange}></Select>
+                        <Select name='icon' options={['exercise', 'study', 'brain', 'mindfulness', 'food', 'music']} value={values.icon} onChange={handleChange}></Select>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '6rem' }}>
                         <Button type='submit' color='#43B929'>Create habit</Button>
