@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
 import EditTodo from './EditTodo'
+import moment from 'moment'
 
 const Item = styled.div`
     box-shadow: 1px 1px 7px 1px #DDD;
@@ -77,13 +78,16 @@ const TodoItem = (props) => {
 
     const handleCheck = () => {
 
+        // this completed is before click on checkbox
+        const payload = completed ? null : moment().utc().endOf('day')
+
         fetch(`http://localhost:8000/tasks/${props._id}`, {
             method: 'PATCH',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ completed: !completed })
+            body: JSON.stringify({ completed: payload })
         }).then((res) => {
             setCompleted(!completed);
         }).catch((err) => { console.log(err) })

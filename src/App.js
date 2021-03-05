@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header'
 import styled from 'styled-components'
 import Wallpaper from './components/Wallpaper';
@@ -33,6 +33,17 @@ const Footer = styled.footer`
 const App = () => {
 
   const [showWallpaper, setShowWallpaper] = useState(false);
+  const [quote, setQuote] = useState({ quote: '', author: '' })
+
+  useEffect(() => {
+    fetch('http://localhost:8000/quotes', {
+      method: 'GET'
+    }).then(res => res.json()).then((res) => {
+      //TODO: Only do this once a day, use a cookie for it
+      setQuote(res)
+      console.log(res)
+    }).catch((err) => { console.log(err) })
+  }, [])
 
   return (
     <Router>
@@ -43,8 +54,8 @@ const App = () => {
       <Route exact path="/calendar" component={CalendarPage} />
 
       <Footer >
-        <div style={{ paddingBottom: '4px' }}>"Try not to become a man of success, but rather try to become a man of value."</div>
-        <div><small>A. Einstein</small></div>
+        <div style={{ paddingBottom: '4px' }}>"{quote.quote}"</div>
+        <div><small>{quote.author}</small></div>
       </Footer>
       <Wallpaper show={showWallpaper} setShowWallpaper={setShowWallpaper} />
 
