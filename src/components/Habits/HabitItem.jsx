@@ -82,21 +82,23 @@ const HabitItem = (props) => {
         if (props.done) setCompleted(true);
     }, [])
 
-    const handleCheck = () => {
-        fetch(`http://localhost:8000/habits/${props.id}`, {
-            method: 'PATCH',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ completedToday: !completed })
-        }).then((res) => {
-            setCompleted(!completed)
-        }).catch((err) => { console.log(err) })
+    const handleCheck = (e) => {
+        if (e.target.id === 'item') {
+            fetch(`http://localhost:8000/habits/${props.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ completedToday: !completed })
+            }).then((res) => {
+                setCompleted(!completed)
+            }).catch((err) => { console.log(err) })
+        }
     }
 
     return (
-        <Item done={completed} onClick={handleCheck}>
+        <Item id='item' done={completed} onClick={handleCheck}>
             <FontAwesomeIcon icon={pickIcon()} size='2x' style={{ color: completed ? 'white' : '#333', marginBottom: '3rem' }} />
             <Title style={{ color: completed ? 'white' : '#333' }}>{props.title}</Title>
             <small style={{
@@ -106,7 +108,7 @@ const HabitItem = (props) => {
                 < FontAwesomeIcon icon={faInfo} style={{ color: '#aaa' }} />
             </EditButton>
             {
-                modalOpen && <EditHabit open={modalOpen} setModalOpen={setModalOpen} _id={props.id}></EditHabit>
+                modalOpen && <EditHabit onClick={() => { console.log('caaca') }} name='editModal' open={modalOpen} setModalOpen={setModalOpen} _id={props.id}></EditHabit>
             }
         </Item >
     )

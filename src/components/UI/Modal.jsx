@@ -5,6 +5,7 @@ import KeyboardEventHandler from 'react-keyboard-event-handler';
 
 const Container = styled.div`
     width: 100%;
+    cursor: auto;
     height: 100%;
     position: fixed;
     top: 0;
@@ -23,6 +24,7 @@ const Window = styled.div`
     position: fixed;
     top: 10%;
     left: 0%;
+    color: black;
     background: white;
     z-index: 10;
     padding: 3rem;
@@ -45,14 +47,13 @@ const Modal = (props) => {
         <Container id='container' show={props.show} onClick={handleClick}>
             <KeyboardEventHandler handleKeys={['esc']} isExclusive={true}
                 handleFocusableElements={true} onKeyEvent={closeModal}></KeyboardEventHandler>
-            <Window id='window' onClick={handleClick}>
+            <Window id='window'>
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
                     <h1 style={{ fontSize: '3rem', margin: '0' }}>{props.title}</h1>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', width: '66%' }}>
                     {props.children}
                 </div>
-
             </Window>
         </Container>
     )

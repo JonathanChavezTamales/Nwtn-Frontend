@@ -38,7 +38,6 @@ const TodoContainer = (props) => {
     }
 
     const retrieveTasks = () => {
-
         fetch('http://localhost:8000/tasks', { method: 'GET' })
             .then(res => res.json())
             .then(data => {
