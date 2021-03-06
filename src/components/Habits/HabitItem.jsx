@@ -25,7 +25,7 @@ const EditButton = styled.div`
 
 const Item = styled.div`
     background: ${props => props.done ? '#a4e096' : 'white'};
-    box-shadow: 1px 1px 7px 1px #DDD;
+    box-shadow: 1px 1px 15px 1px #eee;
     padding: 1rem;
     height: 10rem;
     font-weight: 500;

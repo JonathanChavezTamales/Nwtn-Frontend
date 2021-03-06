@@ -5,7 +5,7 @@ const Label = styled.label`
     font-size: 1.2rem;
     display: flex;
     align-items: center;
-    border-left: solid ${props => props.color ? props.color : 'none'} 10px;
+    border-left: solid ${props => props.color ? props.color : 'none'} 6px;
     padding-left: 1rem;
 `
 

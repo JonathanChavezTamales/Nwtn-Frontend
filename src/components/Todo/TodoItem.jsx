@@ -4,7 +4,7 @@ import EditTodo from './EditTodo'
 import moment from 'moment'
 
 const Item = styled.div`
-    box-shadow: 1px 1px 7px 1px #DDD;
+    box-shadow: 1px 1px 15px 1px #eee;
     padding: 1rem;
     color: ${props => props.checked ? 'white' : '#333'};
     cursor: pointer;

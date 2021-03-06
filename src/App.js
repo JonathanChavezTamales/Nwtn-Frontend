@@ -54,7 +54,7 @@ const App = () => {
       <Route exact path="/calendar" component={CalendarPage} />
 
       <Footer >
-        <div style={{ paddingBottom: '4px' }}>"{quote.quote}"</div>
+        <div style={{ paddingBottom: '4px', textAlign: 'center' }}>"{quote.quote}"</div>
         <div><small>{quote.author}</small></div>
       </Footer>
       <Wallpaper show={showWallpaper} setShowWallpaper={setShowWallpaper} />
