@@ -19,7 +19,7 @@ const Checkbox = (props) => {
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between', width: '80%', marginBottom: '1rem' }}>
             <Label color={props.color} name={props.label} htmlFor={props.label}>{props.label}</Label>
-            <Box type='checkbox' name={props.label}></Box>
+            <Box type='checkbox' name={props.label} checked={props.checked}></Box>
         </div>
 
     )

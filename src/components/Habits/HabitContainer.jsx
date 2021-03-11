@@ -5,7 +5,7 @@ import Button from '../UI/Button'
 import CreateHabit from './CreateHabit'
 
 const Container = styled.div`
-    width: 33%;
+    width: 30%;
     margin-left: 2rem;
 
     @media only screen and (max-width: 600px) {
@@ -15,6 +15,7 @@ const Container = styled.div`
 
 const H2 = styled.h2`
     display: inline;
+    font-weight: 300;
     margin-right: 2rem;
 `
 

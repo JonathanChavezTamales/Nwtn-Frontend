@@ -27,20 +27,19 @@ const Item = styled.div`
     background: ${props => props.done ? '#a4e096' : 'white'};
     box-shadow: 1px 1px 15px 1px #eee;
     padding: 1rem;
-    height: 10rem;
+    height: 9rem;
     font-weight: 500;
-    width: 10rem;
-    margin-right: 2rem;
+    width: 9rem;
+    margin-right: 1.8rem;
     margin-bottom: 2rem;
     color: ${props => props.done ? 'white' : '#333'};
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     user-select: none;
     box-sizing: border-box;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 
     &:hover ${EditButton} {
@@ -51,7 +50,8 @@ const Item = styled.div`
 
 const Title = styled.div`
     text-align: center;
-    color: wh9
+    font-size: 1rem;
+    color: white;
 `
 
 
@@ -83,7 +83,9 @@ const HabitItem = (props) => {
     }, [])
 
     const handleCheck = (e) => {
-        if (e.target.id === 'item') {
+        console.log(e.target)
+        e.stopPropagation();
+        if (e.target.id !== 'editbutton') {
             fetch(`http://localhost:8000/habits/${props.id}`, {
                 method: 'PATCH',
                 headers: {
@@ -99,16 +101,19 @@ const HabitItem = (props) => {
 
     return (
         <Item id='item' done={completed} onClick={handleCheck}>
-            <FontAwesomeIcon icon={pickIcon()} size='2x' style={{ color: completed ? 'white' : '#333', marginBottom: '3rem' }} />
-            <Title style={{ color: completed ? 'white' : '#333' }}>{props.title}</Title>
-            <small style={{
-                marginTop: '.4rem'
-            }}>{completed ? props.streak + 1 : props.streak}</small>
+            <FontAwesomeIcon icon={pickIcon()} size='2x' style={{ color: completed ? 'white' : '#333', marginBottom: '2rem' }} />
+            <div >
+                <Title style={{ color: completed ? 'white' : '#333' }}>{props.title}</Title>
+            </div>
+            <div style={{ position: 'absolute', top: '9px', left: '9px', color: completed ? 'white' : '#999' }}>
+                <small>{props.streak}</small>
+            </div>
+
             <EditButton id='editbutton' onClick={handleInfoClick}>
                 < FontAwesomeIcon icon={faInfo} style={{ color: '#aaa' }} />
             </EditButton>
             {
-                modalOpen && <EditHabit onClick={() => { console.log('caaca') }} name='editModal' open={modalOpen} setModalOpen={setModalOpen} _id={props.id}></EditHabit>
+                modalOpen && <EditHabit name='editModal' open={modalOpen} setModalOpen={setModalOpen} _id={props.id}></EditHabit>
             }
         </Item >
     )

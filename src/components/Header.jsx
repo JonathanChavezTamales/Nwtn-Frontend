@@ -9,7 +9,7 @@ const Nav = styled.nav`
     align-items: center;
     justify-content: space-between;
     margin-bottom: .5rem;
-    border-bottom: 2px #CCC solid;
+    box-shadow: 1px 0px 15px 1px #eaeaea;
 `
 
 const Logo = styled.span`
@@ -24,7 +24,7 @@ const Logo = styled.span`
 const linkStyles = `
 font-weight: 400;
 font-size: 1rem;
-padding: 20px 15px;
+padding: .6rem .9rem;
 color: #333;
 background: transparent;
 margin-right: .2rem;
@@ -74,7 +74,7 @@ const TodoItem = (props) => {
                 {/* <LinkElement to='/goals'>goals</LinkElement>
                 <LinkElement to='/lists'>lists</LinkElement>
                 <LinkElement to='/screentime'>screen time</LinkElement> */}
-                <LinkElement onClick={() => { props.setShowWallpaper(true) }} to='#'>wallpaper</LinkElement>
+                {/* <LinkElement onClick={() => { props.setShowWallpaper(true) }} to='#'>wallpaper</LinkElement> */}
                 <A href='https://guyckr4srmz.typeform.com/to/vnZYklfj' rel='nofollow' target='_blank' >send feedback</A>
             </LinkContainer>
         </Nav>

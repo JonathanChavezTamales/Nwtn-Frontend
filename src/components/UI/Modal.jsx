@@ -48,10 +48,10 @@ const Modal = (props) => {
             <KeyboardEventHandler handleKeys={['esc']} isExclusive={true}
                 handleFocusableElements={true} onKeyEvent={closeModal}></KeyboardEventHandler>
             <Window id='window'>
-                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
                     <h1 style={{ fontSize: '3rem', margin: '0' }}>{props.title}</h1>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center', width: '66%' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', width: '66%', flexWrap: 'wrap', flexDirection: 'column', alignItems: 'center' }}>
                     {props.children}
                 </div>
             </Window>

@@ -72,13 +72,13 @@ const EditTodo = (props) => {
                     handleSubmit,
                 }) => (<form onSubmit={handleSubmit}>
                     <Input autoComplete="off" name='title' value={values.title} required placeholder="Task title" big={true} autoFocus onChange={handleChange}></Input>
-                    <TextArea autoComplete="off" onChange={handleChange} rows={10} name='details' value={values.details} cols={64} placeholder='Optional details'></TextArea>
+                    <TextArea autoComplete="off" onChange={handleChange} rows={5} name='details' value={values.details} cols={64} placeholder='Optional details'></TextArea>
                     <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
                         <RadioGroup onChange={handleChange} value={values.category} name='category' options={['HyperK', 'Personal', 'Escuela', 'Side Projects']}></RadioGroup>
                         <Date name='due' value={values.due} onChange={handleChange}></Date>
                     </div>
                     <Field type='checkbox' name='important' id="important" checked={values.important}></Field><label for="important">Important</label>
-                    <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '3rem' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '2rem' }}>
                         <Button onClick={() => { deleteTask(); props.setModalOpen(false) }} color='#A63D40' big alternate>Delete task</Button>
                         <Button type='submit' color='#43B929' big>Update task</Button>
                     </div>

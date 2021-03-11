@@ -17,16 +17,30 @@ const Footer = styled.footer`
   width: 100%;
   background: black;
   color: white;
-  padding: .5rem;
+  padding: .3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 15;
+`
 
-  @media only screen and (max-width: 600px) {
+const MobileAlert = styled.footer`
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+
+  @media only screen and (min-width: 900px) {
     display: none;
   }
-
 `
 
 
@@ -58,6 +72,11 @@ const App = () => {
         <div><small>{quote.author}</small></div>
       </Footer>
       <Wallpaper show={showWallpaper} setShowWallpaper={setShowWallpaper} />
+
+      <MobileAlert>
+        <h1>nwtn</h1>
+        mobile coming soon
+      </MobileAlert>
 
     </Router>
   )

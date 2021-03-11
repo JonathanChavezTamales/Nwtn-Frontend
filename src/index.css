@@ -4,6 +4,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -webkit-box-sizing: border-box;
   -moz-osx-font-smoothing: grayscale;
+  background: #fbfbfb;
 }
 
 ::-webkit-scrollbar {

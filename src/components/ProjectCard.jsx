@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components'
 
 const Project = styled.div`
-    width: 30rem;
-    height: 16rem;
+    width: 20%;
+    min-width: 16rem;
+    height: 12rem;
     padding-left: 1rem;
     margin-right: 2rem;
     margin-bottom: 3rem;
@@ -14,9 +15,9 @@ const Project = styled.div`
 `
 
 const Title = styled.div`
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 200;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 `
 
 const PersonImage = styled.img`
@@ -36,7 +37,7 @@ const ProjectCard = (props) => {
             }}>
                 <Title>{props.title || 'Project'}</Title>
                 <div>Weekly progress: <b>{props.progress || 0}%</b></div>
-                <div style={{ paddingTop: '2rem', flexGrow: '1', alignItems: 'center' }}>
+                <div style={{ paddingTop: '1.8rem', flexGrow: '1', alignItems: 'center' }}>
                     <PersonImage src='https://images.generated.photos/zBkGrPELSg6luo3pC9bN9Tse7n_vbNJyrOIAldLzCOk/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/XzA4MTAyMDcuanBn.jpg'></PersonImage>
                     <PersonImage src='https://images.generated.photos/A3ixL3VOg2DdQyhhNdY7x1_NcA2zj1fhYi_IBEQ2anM/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/XzA5NTAyODkuanBn.jpg'></PersonImage>
                 </div>

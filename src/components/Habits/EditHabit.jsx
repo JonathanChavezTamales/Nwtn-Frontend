@@ -4,7 +4,8 @@ import Modal from '../UI/Modal'
 import Input from '../UI/Input'
 import Select from '../UI/Select'
 import { Formik } from 'formik';
-
+import { ResponsiveCalendar } from '@nivo/calendar'
+import moment from 'moment'
 
 // TODO: Instead of calling api for filling values, pull them from context
 
@@ -82,7 +83,40 @@ const EditTodo = (props) => {
 
             </Formik>
 
-        </Modal>
+            {
+                habit.completed &&
+                <div style={{ height: '10rem', width: '50rem' }}>
+                    <ResponsiveCalendar data={habit.completed.map((date) => { return { day: moment(date).format('YYYY-MM-DD'), number: 1 } })}
+                        from="2021-05-01"
+                        to="2021-08-01"
+                        emptyColor="#eeeeee"
+                        colors={['#61cdbb', '#97e3d5', '#e8c1a0', '#f47560']}
+                        margin={{ right: 40, left: 40, top: 40 }}
+                        yearSpacing={40}
+                        monthBorderColor="#ffffff"
+                        dayBorderWidth={1}
+                        dayBorderColor="#ffffff"
+                        legends={[
+                            {
+                                anchor: 'bottom-right',
+                                direction: 'row',
+                                translateY: 36,
+                                itemCount: 4,
+                                itemWidth: 42,
+                                itemHeight: 36,
+                                itemsSpacing: 14,
+                                itemDirection: 'right-to-left'
+                            }
+                        ]}
+                    ></ResponsiveCalendar>
+                </div>
+
+            }
+
+
+
+
+        </Modal >
     )
 
 }

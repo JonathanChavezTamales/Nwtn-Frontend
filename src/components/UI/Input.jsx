@@ -9,7 +9,7 @@ border: none;
 border-bottom: 2px solid #DDD;
 padding: 0rem 0rem .5rem 0rem;
 width: 95%;
-margin-bottom: 3rem;
+margin-bottom: 2rem;
 
 &:focus{
     outline-width: 0;

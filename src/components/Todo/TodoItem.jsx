@@ -5,7 +5,7 @@ import moment from 'moment'
 
 const Item = styled.div`
     box-shadow: 1px 1px 15px 1px #eee;
-    padding: 1rem;
+    padding: .6rem;
     color: ${props => props.checked ? 'white' : '#333'};
     cursor: pointer;
     margin-bottom: .7rem;
@@ -32,8 +32,9 @@ const Title = styled.div`
 `
 
 const ImportantMarker = styled.div`
-    width: .3rem;
-    height: 1.7rem;
+    width: 9px;
+    border-radius: 100%;
+    height: 9px;
     background: #ff0054;
     justify-self: flex-end;
 `
@@ -98,9 +99,9 @@ const TodoItem = (props) => {
             <Item id='item' checked={completed} onClick={handleClick}>
                 <Checkbox id='checkbox' checked={completed} onClick={handleCheck} category={() => categoryToColor(props.category)}></Checkbox>
                 <Title>{props.title}</Title>
-                <div style={{ display: 'flex', marginLeft: 'auto' }}>
+                <div style={{ display: 'flex', marginLeft: 'auto', alignItems: 'center' }}>
                     {props.reminder && <Reminder>{props.reminder}</Reminder>}
-                    {props.important && <ImportantMarker />}
+                    {props.important && !completed && <ImportantMarker />}
                 </div>
 
             </Item >
