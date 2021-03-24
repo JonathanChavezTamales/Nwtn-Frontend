@@ -5,7 +5,9 @@ import Button from '../UI/Button'
 import CreateTodo from './CreateTodo'
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import moment from 'moment';
-
+import { faCog } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Options from '../UI/Options'
 
 
 const Container = styled.div`
@@ -23,11 +25,21 @@ const H2 = styled.h2`
     margin-right: 2rem;
 `
 
+const Option = styled.div`
+    border-bottom: 1px solid #ddd;
+    padding: 3px 0px;
+    margin-top: 6px;
+    cursor: pointer;
+    color: ${props => props.active ? '#333' : '#999'};
+    font-size: .9rem;
+    text-align: left;
+`
+
 
 const TodoContainer = ({ tasks, retrieveTasks }) => {
 
     const [modalOpen, setModalOpen] = useState(false);
-
+    const [options, setOptions] = useState({open: false, subtasks: false, completed: true});
 
     const showModal = () => {
         setModalOpen(true);
@@ -54,13 +66,24 @@ const TodoContainer = ({ tasks, retrieveTasks }) => {
             <KeyboardEventHandler handleKeys={['t']}
                 onKeyEvent={showModal}></KeyboardEventHandler>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <H2>Tasks</H2><Button onClick={showModal} color="#43B929">+</Button>
+                <H2>Tasks</H2>
+                
+                <Button onClick={showModal} color="#43B929">+</Button>
+                <div style={{width:'100%', textAlign:'end', position:'relative', paddingRight:'3px'}} >
+                    <FontAwesomeIcon id='checkbox' icon={faCog} style={{ color:'bbb',cursor:'pointer', position:'inherit', zIndex:'5' }} onClick={() => {setOptions({...options, open:!options.open})}}></FontAwesomeIcon>
+                    {options.open &&  
+                        <Options width='10rem'>
+                            <Option active={options.subtasks} onClick={() => {setOptions({...options, subtasks:!options.subtasks})}}>Show subtasks</Option>
+                            <Option active={options.completed} onClick={() => {setOptions({...options, completed:!options.completed})}}>Show completed</Option>
+                        </Options>
+                    }
+                   
+                </div>
             </div>
-            {tasks.expired && <>
-                { tasks.expired.length > 0 && < h3 style={{ color: '#ff0054', fontWeight: 400 }} >Expired</h3>}
-                { tasks.expired.map((task) => <TodoItem important={task.important} key={task._id} done={task.completed} _id={task._id} title={task.title} category={task.category}></TodoItem>)}
 
-                < h3 style={{ marginTop: tasks.expired.length > 0 ? '2rem' : 'default', fontWeight: 400 }} >Today ({moment().format('dddd')})</h3>
+            {tasks.today && <>
+
+                < h3 style={{ fontWeight: 500 }} >Today ({moment().format('dddd')})</h3>
                 {tasks.today.length === 0 && <small>No tasks for today. Go enjoy your life!</small>}
                 { tasks.today.map((task) => <TodoItem important={task.important} key={task._id} done={task.completed} _id={task._id} title={task.title} category={task.category}></TodoItem>)}
 

@@ -13,6 +13,13 @@ const Container = styled.div`
     z-index: 9;
     display: ${props => props.show ? 'inherit' : 'none'};
     backdrop-filter: brightness(20%);
+
+    animation: fadeIn ease .2s;
+
+    @keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+        }
 `
 
 const Window = styled.div`
@@ -23,7 +30,8 @@ const Window = styled.div`
     align-items:center;
     position: fixed;
     top: 10%;
-    left: 0%;
+    left: 10%;
+    width: 80%;
     color: black;
     background: white;
     z-index: 10;
@@ -49,7 +57,7 @@ const Modal = (props) => {
                 handleFocusableElements={true} onKeyEvent={closeModal}></KeyboardEventHandler>
             <Window id='window'>
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-                    <h1 style={{ fontSize: '3rem', margin: '0' }}>{props.title}</h1>
+                    <h1 style={{ fontSize: '3rem', margin: '0', fontWeight: '300' }}>{props.title}</h1>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', width: '66%', flexWrap: 'wrap', flexDirection: 'column', alignItems: 'center' }}>
                     {props.children}

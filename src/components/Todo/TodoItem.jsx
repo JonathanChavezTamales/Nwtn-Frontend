@@ -2,33 +2,23 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
 import EditTodo from './EditTodo'
 import moment from 'moment'
+import Checkbox from '../UI/Checkbox'
 
 const Item = styled.div`
     box-shadow: 1px 1px 15px 1px #eee;
     padding: .6rem;
     color: ${props => props.checked ? 'white' : '#333'};
     cursor: pointer;
-    margin-bottom: .7rem;
+    margin-bottom: .5rem;
     display: flex;
     align-items:center;
     position: relative;
     background: ${props => props.checked ? '#a4e096' : 'white'}
 `
 
-const Checkbox = styled.span`
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 2px;
-    border: ${props => props.checked ? '#8fca87' : '#ccc'} solid 2px;
-    margin-right: 1rem;
-    background: ${props => props.checked ? '#8fca87' : 'inherit'};
-    border-left: 4px solid ${props => props.category};
-    ${props => props.checked ? 'border-left: #8fca87 solid 2px;' : ''}
-    `
-
 const Title = styled.div`
     align-self: center;
-    font-weight: 500;
+    font-weight: 400;
 `
 
 const ImportantMarker = styled.div`
@@ -63,7 +53,7 @@ const TodoItem = (props) => {
             case 'HyperK': return '#ffd400';
             case 'Escuela': return '#41E2BA';
             case 'Side Projects': return '#5A716A';
-            default: return '#ccc';
+            default: return 'transparent';
         }
     }
 
@@ -72,7 +62,7 @@ const TodoItem = (props) => {
     }, [])
 
     const handleClick = (e) => {
-        if (e.target.id !== 'checkbox') {
+        if (e.target.id === 'item') {
             setModalOpen(true)
         }
     }
@@ -97,10 +87,10 @@ const TodoItem = (props) => {
     return (
         <>
             <Item id='item' checked={completed} onClick={handleClick}>
-                <Checkbox id='checkbox' checked={completed} onClick={handleCheck} category={() => categoryToColor(props.category)}></Checkbox>
-                <Title>{props.title}</Title>
+                <Checkbox checked={completed} onClick={handleCheck} marker={categoryToColor(props.category)}></Checkbox>
+                <Title id='item'>{props.title}</Title>
                 <div style={{ display: 'flex', marginLeft: 'auto', alignItems: 'center' }}>
-                    {props.reminder && <Reminder>{props.reminder}</Reminder>}
+                    {props.reminder && !completed && <Reminder>{props.reminder}</Reminder>}
                     {props.important && !completed && <ImportantMarker />}
                 </div>
 

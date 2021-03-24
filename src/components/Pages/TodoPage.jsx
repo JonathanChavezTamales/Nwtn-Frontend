@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import TodoContainer from '../Todo/TodoContainer'
 import HabitContainer from '../Habits/HabitContainer'
 import styled from 'styled-components'
-import Checkbox from '../UI/Checkbox';
 import { useHistory } from 'react-router-dom';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 
@@ -37,7 +36,6 @@ const TodoPage = () => {
             .then(res => res.json())
             .then(data => {
                 setTasks({
-                    expired: data.expired,
                     today: data.today,
                     thisweek: data.thisweek,
                     someday: data.someday

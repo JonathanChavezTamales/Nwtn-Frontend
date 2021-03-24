@@ -4,7 +4,7 @@ import { faAppleAlt, faBookOpen, faBrain, faDumbbell, faSpa, faInfo, faMusic } f
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EditHabit from './EditHabit'
 
-const EditButton = styled.div`
+const EditButton = styled.span`
     width: 30px;
     height: 30px;
     position: absolute;
@@ -28,10 +28,10 @@ const Item = styled.div`
     box-shadow: 1px 1px 15px 1px #eee;
     padding: 1rem;
     height: 9rem;
-    font-weight: 500;
+    font-weight: 400;
     width: 9rem;
-    margin-right: 1.8rem;
-    margin-bottom: 2rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
     color: ${props => props.done ? 'white' : '#333'};
     cursor: pointer;
     user-select: none;
@@ -74,8 +74,9 @@ const HabitItem = (props) => {
     }
 
     const handleInfoClick = (e) => {
-        e.stopPropagation();
-        setModalOpen(true)
+        console.log("infoclick")
+        console.log(e.target);
+        setModalOpen(true);
     }
 
     useEffect(() => {
@@ -83,9 +84,8 @@ const HabitItem = (props) => {
     }, [])
 
     const handleCheck = (e) => {
-        console.log(e.target)
-        e.stopPropagation();
-        if (e.target.id !== 'editbutton') {
+        if (e.target.id === 'item' || e.target.tagName == 'path') {
+            console.log('check')
             fetch(`http://localhost:8000/habits/${props.id}`, {
                 method: 'PATCH',
                 headers: {
@@ -101,7 +101,7 @@ const HabitItem = (props) => {
 
     return (
         <Item id='item' done={completed} onClick={handleCheck}>
-            <FontAwesomeIcon icon={pickIcon()} size='2x' style={{ color: completed ? 'white' : '#333', marginBottom: '2rem' }} />
+            <FontAwesomeIcon onClick={handleCheck} icon={pickIcon()} size='2x' style={{ color: completed ? 'white' : '#333', marginBottom: '2rem' }} />
             <div >
                 <Title style={{ color: completed ? 'white' : '#333' }}>{props.title}</Title>
             </div>

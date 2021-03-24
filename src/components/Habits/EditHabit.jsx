@@ -75,7 +75,7 @@ const EditTodo = (props) => {
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Select name='icon' options={['exercise', 'study', 'brain', 'mindfulness', 'food', 'music']} value={values.icon} onChange={handleChange}></Select>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '6rem' }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
                         <Button onClick={() => { deleteHabit(); props.setModalOpen(false) }} color='#A63D40' big alternate>Delete habit</Button>
                         <Button type='submit' color='#43B929' big>Update habit</Button>
                     </div>

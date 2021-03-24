@@ -4,7 +4,9 @@ import styled from 'styled-components'
 import Wallpaper from './components/Wallpaper';
 import TodoPage from './components/Pages/TodoPage';
 import ProjectsPage from './components/Pages/ProjectsPage';
+import ProjectPage from './components/Pages/ProjectPage';
 import CalendarPage from './components/Pages/CalendarPage';
+import MePage from './components/Pages/MePage';
 
 import {
   BrowserRouter as Router,
@@ -65,7 +67,9 @@ const App = () => {
 
       <Route exact path="/" component={TodoPage} />
       <Route exact path="/projects" component={ProjectsPage} />
+      <Route exact path="/projects/:project" component={ProjectPage} />
       <Route exact path="/calendar" component={CalendarPage} />
+      <Route exact path="/me" component={MePage} />
 
       <Footer >
         <div style={{ paddingBottom: '4px', textAlign: 'center' }}>"{quote.quote}"</div>

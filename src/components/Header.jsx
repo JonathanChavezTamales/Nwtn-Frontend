@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components'
 import { NavLink, Link } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const Logo = styled.span`
     font-size: 1.5rem;
     color: white;
     padding: .2rem 2rem;
-    background: #071013;
+    background: #000;
 `
 
 // This is because styles are shared by navlink and a
@@ -62,7 +62,14 @@ const activeLinkStyle = {
     boxSizing: 'border-box'
 }
 
+
+
 const TodoItem = (props) => {
+
+    useEffect(() => {
+        // Code for opening typeform modal
+        var qs, js, q, s, d = document, gi = d.getElementById, ce = d.createElement, gt = d.getElementsByTagName, id = "typef_orm_share", b = "https://embed.typeform.com/"; if (!gi.call(d, id)) { js = ce.call(d, "script"); js.id = id; js.src = b + "embed.js"; q = gt.call(d, "script")[0]; q.parentNode.insertBefore(js, q) }
+    }, [])
 
     return (
         <Nav>
@@ -71,11 +78,17 @@ const TodoItem = (props) => {
                 <LinkElement to='/' exact activeStyle={activeLinkStyle}>todo</LinkElement>
                 <LinkElement to='/projects' activeStyle={activeLinkStyle}>projects</LinkElement>
                 <LinkElement to='/calendar' activeStyle={activeLinkStyle}>calendar</LinkElement>
-                {/* <LinkElement to='/goals'>goals</LinkElement>
+
+
+
+                <A className="typeform-share button" href="https://form.typeform.com/to/vnZYklfj?typeform-medium=embed-snippet" data-mode="drawer_right" target="_blank" >send feedback</A>
+
+                {/* 
+                <LinkElement to='/me' activeStyle={activeLinkStyle}>me</LinkElement>
+                <LinkElement to='/goals'>goals</LinkElement>
                 <LinkElement to='/lists'>lists</LinkElement>
                 <LinkElement to='/screentime'>screen time</LinkElement> */}
                 {/* <LinkElement onClick={() => { props.setShowWallpaper(true) }} to='#'>wallpaper</LinkElement> */}
-                <A href='https://guyckr4srmz.typeform.com/to/vnZYklfj' rel='nofollow' target='_blank' >send feedback</A>
             </LinkContainer>
         </Nav>
     )

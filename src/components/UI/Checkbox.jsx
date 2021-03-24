@@ -1,27 +1,16 @@
 import React, { useState } from 'react';
-import styled from 'styled-components'
+import { faCheckCircle, faCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Label = styled.label`
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    border-left: solid ${props => props.color ? props.color : 'none'} 6px;
-    padding-left: 1rem;
-`
-
-const Box = styled.input`
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-left: 1.5rem;
-`
 
 const Checkbox = (props) => {
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between', width: '80%', marginBottom: '1rem' }}>
-            <Label color={props.color} name={props.label} htmlFor={props.label}>{props.label}</Label>
-            <Box type='checkbox' name={props.label} checked={props.checked}></Box>
-        </div>
-
+        <span onClick={props.onClick}>
+            {
+                props.checked ? < FontAwesomeIcon id='checkbox' icon={faCheckCircle} style={{ borderLeft: `3px transparent solid`, paddingLeft: '.6rem', color: '#fff', marginRight: '1rem', fontSize: '1.5rem' }} /> :
+                    < FontAwesomeIcon id='checkbox' icon={faCircle} style={{ borderLeft: `2px ${props.marker} solid`, paddingLeft: '.6rem', color: '#ddd', marginRight: '1rem', fontSize: '1.5rem' }} />
+            }
+        </span>
     )
 }
 
