@@ -13,6 +13,8 @@ import {
   Route,
 } from "react-router-dom";
 
+import {TodoProvider} from './context/TodoContext';
+
 const Footer = styled.footer`
   position: fixed;
   bottom: 0;
@@ -63,24 +65,30 @@ const App = () => {
 
   return (
     <Router>
-      <Header setShowWallpaper={setShowWallpaper}></Header>
 
-      <Route exact path="/" component={TodoPage} />
-      <Route exact path="/projects" component={ProjectsPage} />
-      <Route exact path="/projects/:project" component={ProjectPage} />
-      <Route exact path="/calendar" component={CalendarPage} />
-      <Route exact path="/me" component={MePage} />
+      <TodoProvider>
+        
+        <Header setShowWallpaper={setShowWallpaper}></Header>
 
-      <Footer >
-        <div style={{ paddingBottom: '4px', textAlign: 'center' }}>"{quote.quote}"</div>
-        <div><small>{quote.author}</small></div>
-      </Footer>
-      <Wallpaper show={showWallpaper} setShowWallpaper={setShowWallpaper} />
+        <Route exact path="/" component={TodoPage} />
+        <Route exact path="/projects" component={ProjectsPage} />
+        <Route exact path="/projects/:project" component={ProjectPage} />
+        <Route exact path="/calendar" component={CalendarPage} />
+        <Route exact path="/me" component={MePage} />
 
-      <MobileAlert>
-        <h1>nwtn</h1>
-        mobile coming soon
-      </MobileAlert>
+        <Footer >
+          <div style={{ paddingBottom: '4px', textAlign: 'center' }}>"{quote.quote}"</div>
+          <div><small>{quote.author}</small></div>
+        </Footer>
+        <Wallpaper show={showWallpaper} setShowWallpaper={setShowWallpaper} />
+
+        <MobileAlert>
+          <h1>nwtn</h1>
+          mobile coming soon
+        </MobileAlert>
+
+      </TodoProvider>
+      
 
     </Router>
   )

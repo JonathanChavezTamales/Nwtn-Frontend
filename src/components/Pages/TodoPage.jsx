@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import TodoContainer from '../Todo/TodoContainer'
 import HabitContainer from '../Habits/HabitContainer'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
-
+import {TodoContext} from '../../context/TodoContext'
 
 const Section = styled.section`
   padding: 1rem;
@@ -23,12 +23,8 @@ const TodoPage = () => {
 
     const history = useHistory();
 
-    const [tasks, setTasks] = useState({
-        today: [],
-        thisweek: [],
-        someday: []
-    });
-
+    const {tasks, setTasks} = useContext(TodoContext);
+    
     const [filters, setFilters] = useState({});
 
     const retrieveTasks = () => {
